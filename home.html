@@ -1,0 +1,66 @@
+import React from "react";
+import { createRoot } from "react-dom/client";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
+const NavBar = () => (
+  <nav className="p-4 bg-green-800 text-white flex gap-4">
+    <Link to="/" className="hover:underline">Home</Link>
+    <Link to="/about" className="hover:underline">About</Link>
+    <Link to="/crops" className="hover:underline">Crops</Link>
+    <Link to="/contact" className="hover:underline">Contact</Link>
+  </nav>
+);
+
+const Home = () => (
+  <div className="p-6 text-center">
+    <h1 className="text-4xl font-bold mb-4">Welcome to Coatesville Farm</h1>
+    <p className="text-lg">A family farm dedicated to quality and tradition.</p>
+  </div>
+);
+
+const About = () => (
+  <div className="p-6">
+    <h2 className="text-3xl font-semibold mb-4">About Us</h2>
+    <p>Coatesville Farm is a family-owned farm with generations of commitment to sustainable agriculture and community values.</p>
+  </div>
+);
+
+const Crops = () => (
+  <div className="p-6">
+    <h2 className="text-3xl font-semibold mb-4">Our Crops</h2>
+    <ul className="list-disc list-inside">
+      <li>Soybeans</li>
+      <li>Wheat</li>
+      <li>Corn</li>
+      <li>Seasonal Vegetables</li>
+    </ul>
+  </div>
+);
+
+const Contact = () => (
+  <div className="p-6">
+    <h2 className="text-3xl font-semibold mb-4">Contact Us</h2>
+    <p>Email: <a href="mailto:info@coatesvillefarm.com" className="text-blue-600 underline">info@coatesvillefarm.com</a></p>
+    <p>Address: 123 Farm Lane, Coatesville, USA</p>
+  </div>
+);
+
+const App = () => (
+  <Router>
+    <NavBar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/crops" element={<Crops />} />
+      <Route path="/contact" element={<Contact />} />
+    </Routes>
+  </Router>
+);
+
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);

@@ -55,17 +55,10 @@ h1, h2, h3 {
   display: block;
   height: auto;
   margin: 0 auto;
-  max-width: 90vw;
-  max-height: 90vw;
+  max-width: 90vw;    /* Responsive scaling */
+  max-height: 90vw;   /* Prevents it from being too tall */
+  width: 100%;        /* Default width */
   object-fit: cover;
-  width: 420px;
-}
-
-@media (max-width: 600px) {
-  .logo {
-    width: 70vw;
-    height: 70vw;
-  }
 }
 
 .home-title {

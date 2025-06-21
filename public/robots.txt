@@ -1,0 +1,6 @@
+# public/robots.txt
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.coatesvillefarm.com/sitemap.xml

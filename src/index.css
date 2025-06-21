@@ -50,7 +50,7 @@ h1, h2, h3 {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(100vw);
+    transform: translateX(calc(100vw + 250px));
   }
 }
 

@@ -6,36 +6,23 @@ import {
   Link
 } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { getLogoPath } from "./utils/logoUtils.js";
+import SeasonalLogo from "./SeasonalLogo.jsx";
 import Contact from "./Contact.jsx";
+import Home from "./Home.jsx";
 
 const NavBar = () => (
   <nav className="navbar">
-    <Link to="/" className="nav-link">Home</Link>
-    <Link to="/about" className="nav-link">About</Link>
-    <Link to="/crops" className="nav-link">Crops</Link>
-    <Link to="/contact" className="nav-link">Contact</Link>
+    <Link to="/">
+      <SeasonalLogo className="navbar-logo" />
+    </Link>
+    <div className="navbar-links">
+      <Link to="/" className="nav-link">Home</Link>
+      <Link to="/about" className="nav-link">About</Link>
+      <Link to="/crops" className="nav-link">Crops</Link>
+      <Link to="/contact" className="nav-link">Contact</Link>
+    </div>
   </nav>
 );
-
-const Home = () => {
-  const logoSrc = React.useMemo(() => getLogoPath(), []);
-
-  return (
-    <div className="home">
-      <Helmet>
-        <title>Coatesville Farm | Family-Run Farm in Virginia</title>
-        <meta
-          name="description"
-          content="Welcome to Coatesville Farm — a family-owned farm in Beaverdam, VA growing crops like soybeans, corn, and hay with care across generations."
-        />
-      </Helmet>
-      <img src={logoSrc} alt="Coatesville Farm logo" className="logo" />
-      <h1>Welcome to Coatesville Farm</h1>
-      <p><em>Rooted in tradition. Grown with care.</em></p>
-    </div>
-  );
-};
 
 const About = () => (
   <div className="page">

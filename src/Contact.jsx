@@ -55,7 +55,10 @@ const Contact = () => {
                 required
                 onChange={handleChange}
             />
-            <small className="helper-text">Please enter your full name.</small>
+            <div className="helper-text-group">
+                <small className="helper-text">Please enter your full name.</small>
+            </div>
+            
             </label>
 
             <label>
@@ -67,23 +70,29 @@ const Contact = () => {
                 required
                 onChange={handleChange}
             />
-            {errors.email ? (
-                <small className="error">{errors.email}</small>
-            ) : (
-                <small className="helper-text">We'll use this to reply to your message.</small>
-            )}
+            <div className="helper-text-group">
+                {errors.email ? (
+                    <small className="error">{errors.email}</small>
+                ) : (
+                    <small className="helper-text">We'll use this to reply to your message.</small>
+                )}
+            </div>
             </label>
 
             <label>
-            Message*:
-            <textarea
-                name="message"
-                rows="5"
-                value={form.message}
-                required
-                onChange={handleChange}
-            />
-            <small className="helper-text">Let us know how we can help.</small>
+                Message*:
+                <textarea
+                    name="message"
+                    rows="5"
+                    maxLength={1000}
+                    value={form.message}
+                    required
+                    onChange={handleChange}
+                />
+                <div className="helper-text-group">
+                    <small className="helper-text">Let us know how we can help.</small>
+                    <small className="helper-text">{form.message.length}/1000 characters</small>
+                </div>            
             </label>
 
         {showButton && (

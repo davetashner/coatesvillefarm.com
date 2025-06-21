@@ -21,10 +21,14 @@ const getLogoForSeason = () => {
   const hour = now.getHours();  // 0 - 23
 
   const isFall = month >= 8 && month <= 10;
+  const isSummer = month >= 5 && month <= 9;
+  const isWinter = month <=11 && month <= 2;
   const isNight = hour < 6 || hour >= 18;
 
-  if (isFall) return "/assets/img/logo-fall.png";
-  if (isNight) return "/assets/img/logo-night.png"; // ← your new image
+  if (isFall)   return "/assets/img/logo-fall.png";
+  if (isSummer) return "/assets/img/logo-summer.png";
+  if (isWinter) return "/assets/img/logo-winter.png"
+  if (isNight)  return "/assets/img/logo-night.png";
   return "/assets/img/logo.png";
 };
 

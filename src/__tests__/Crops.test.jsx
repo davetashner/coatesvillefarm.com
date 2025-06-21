@@ -10,5 +10,6 @@ test('renders the crops list on the Crops page', () => {
   expect(screen.getByText(/soybeans/i)).toBeInTheDocument();
   expect(screen.getByText(/wheat/i)).toBeInTheDocument();
   expect(screen.getByText(/corn/i)).toBeInTheDocument();
-  expect(screen.getByText(/seasonal vegetables/i)).toBeInTheDocument();
+  expect(screen.getByText(/straw/i)).toBeInTheDocument();
+  expect(screen.getByText(/hay/i)).toBeInTheDocument();
 });

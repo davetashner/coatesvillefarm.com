@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { getLogoPath } from "../utils/logoUtils";
 
 const NavBar = () => (
   <nav className="navbar">
@@ -15,30 +16,17 @@ const NavBar = () => (
   </nav>
 );
 
-const getLogoForSeason = () => {
-  const now = new Date();
-  const month = now.getMonth(); // 0 = Jan, 11 = Dec
-  const hour = now.getHours();  // 0 - 23
+const Home = () => {
+  const logoSrc = React.useMemo(() => getLogoPath(), []);
 
-  const isFall = month >= 8 && month <= 10;
-  const isSummer = month >= 5 && month <= 9;
-  const isWinter = month <=11 && month <= 2;
-  const isNight = hour < 6 || hour >= 18;
-
-  if (isFall)   return "/assets/img/logo-fall.png";
-  if (isSummer) return "/assets/img/logo-summer.png";
-  if (isWinter) return "/assets/img/logo-winter.png"
-  if (isNight)  return "/assets/img/logo-night.png";
-  return "/assets/img/logo.png";
+  return (
+    <div className="home">
+      <img src={logoSrc} alt="Coatesville Farm logo" className="logo" />
+      <h1>Welcome to Coatesville Farm</h1>
+      <p><em>Rooted in tradition. Grown with care.</em></p>
+    </div>
+  );
 };
-
-const Home = () => (
-  <div className="home">
-    <img src={getLogoForSeason()} alt="Coatesville Farm Logo" className="logo" />
-    <h1>Welcome to Coatesville Farm</h1>
-    <p><em>Rooted in tradition. Growing with care.</em></p>
-  </div>
-);
 
 const About = () => (
   <div className="page">
@@ -61,7 +49,8 @@ const Crops = () => (
       <li>Soybeans</li>
       <li>Wheat</li>
       <li>Corn</li>
-      <li>Seasonal Vegetables</li>
+      <li>Straw</li>
+      <li>Hay</li>
     </ul>
   </div>
 );
@@ -89,7 +78,14 @@ const App = () => (
         </Routes>
       </main>
       <footer className="footer">
-        &copy; 2025 Coatesville Farm. All rights reserved.
+        <div className="footer-contact">
+          <p>📍 14072 Old Ridge Road, Beaverdam, VA</p>
+          <p>📞 <a href="tel:+18045551234" className="footer-link">(804) 555-1234</a></p>
+          <p>✉️ <a href="mailto:info@coatesvillefarm.com" className="footer-link">info@coatesvillefarm.com</a></p>
+        </div>
+        <div className="footer-copy">
+          &copy; {new Date().getFullYear()} Coatesville Farm. All rights reserved.
+        </div>
       </footer>
     </div>
   </Router>

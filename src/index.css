@@ -44,7 +44,7 @@ h1, h2, h3 {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(150vw);
+    transform: translateX(100vw);
   }
 }
 
@@ -63,7 +63,6 @@ h1, h2, h3 {
   animation-delay: 30s;
 }
 
-/* New, subtle keyframes */
 @keyframes floatGentle {
   0% {
     transform: translate(0, 0);

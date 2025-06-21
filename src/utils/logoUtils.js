@@ -13,19 +13,21 @@ export const isNightTime = (date = new Date()) => {
   return hour < 6 || hour >= 18;
 };
 
-export const getLogoPath = (date = new Date()) => {
-  const season = getSeason(date);
-  const night = isNightTime(date);
-  return `/assets/img/logo-${season}${night ? '-night' : ''}.png`;
-};
-
 export const getPreviewDate = () => {
   const params = new URLSearchParams(window.location.search);
-  const preview = params.get('preview');
+  const preview = params.get("preview");
   if (!preview) return null;
   try {
-    return parseISO(preview); // Validates & parses ISO string
+    return parseISO(preview); // Must be an ISO string like 2025-10-15T21:00
   } catch {
     return null;
   }
+};
+
+export const getLogoPath = () => {
+  const previewDate = getPreviewDate();
+  const date = previewDate || new Date();
+  const season = getSeason(date);
+  const night = isNightTime(date);
+  return `/assets/img/logo-${season}${night ? '-night' : ''}.png`;
 };

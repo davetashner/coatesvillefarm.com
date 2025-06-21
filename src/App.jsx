@@ -1,28 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
+  Link,
+  useLocation
 } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import SeasonalLogo from "./SeasonalLogo.jsx";
 import Contact from "./Contact.jsx";
 import Home from "./Home.jsx";
 
-const NavBar = () => (
-  <nav className="navbar">
-    <Link to="/">
-      <SeasonalLogo className="navbar-logo" />
-    </Link>
-    <div className="navbar-links">
-      <Link to="/" className="nav-link">Home</Link>
-      <Link to="/about" className="nav-link">About</Link>
-      <Link to="/crops" className="nav-link">Crops</Link>
-      <Link to="/contact" className="nav-link">Contact</Link>
-    </div>
-  </nav>
-);
+const NavBar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const location = useLocation();
+
+  const toggleMenu = () => setMenuOpen(prev => !prev);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+      if (window.innerWidth > 600) {
+        setMenuOpen(false); // always close mobile menu on desktop resize
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const navLinksClass = isMobile
+    ? `navbar-links ${menuOpen ? "mobile-visible" : "mobile-hidden"}`
+    : "navbar-links";
+
+  return (
+    <nav className="navbar">
+      <Link to="/">
+        <SeasonalLogo className="navbar-logo" />
+      </Link>
+
+      {isMobile && (
+        <button
+          className="menu-toggle"
+          onClick={toggleMenu}
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+      )}
+
+      <div className={navLinksClass}>
+        <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Home</Link>
+        <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>About</Link>
+        <Link to="/crops" className={`nav-link ${location.pathname === '/crops' ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Crops</Link>
+        <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Contact</Link>
+      </div>
+    </nav>
+  );
+};
 
 const About = () => (
   <div className="page">

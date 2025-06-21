@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { getLogoPath } from "../utils/logoUtils";
+import { getLogoPath } from "./utils/logoUtils.js";
 
 const NavBar = () => (
   <nav className="navbar">

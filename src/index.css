@@ -364,18 +364,32 @@ h1, h2, h3 {
 
   .cloud {
     width: 100px;
+    animation-duration: 30s; /* Faster on mobile */
   }
 
-  .cloud-1 { top: 10%; }
-  .cloud-2 { top: 20%; }
-  .cloud-3 { top: 10%; }
+  .cloud-1 {
+    left: -100px; /* start closer to screen */
+    top: 10%;
+  }
+
+  .cloud-2 {
+    left: -120px;
+    top: 20%;
+  }
+
+  .cloud-3 {
+    left: -80px;
+    top: 10%;
+  }
 
   .swan {
     width: 30px;
+    animation-duration: 40s;
   }
 
   .swan-2 {
     left: 18%;
+    animation-delay: 20s;
   }
 
   .logo {

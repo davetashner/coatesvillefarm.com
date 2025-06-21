@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "date-fns": "^4.1.0",
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {

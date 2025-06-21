@@ -22,7 +22,7 @@ const getLogoForSeason = () => {
 
   const isFall = month >= 8 && month <= 10;
   const isSummer = month >= 5 && month <= 9;
-  const isWinter = month <=11 && month <= 2;
+  const isWinter = month === 11 || month <= 1;
   const isNight = hour < 6 || hour >= 18;
 
   if (isFall)   return "/assets/img/logo-fall.png";
@@ -36,7 +36,7 @@ const Home = () => (
   <div className="home">
     <img src={getLogoForSeason()} alt="Coatesville Farm Logo" className="logo" />
     <h1>Welcome to Coatesville Farm</h1>
-    <p><em>Rooted in tradition. Growing with care.</em></p>
+    <p><em>Rooted in tradition. Grown with care.</em></p>
   </div>
 );
 
@@ -61,7 +61,8 @@ const Crops = () => (
       <li>Soybeans</li>
       <li>Wheat</li>
       <li>Corn</li>
-      <li>Seasonal Vegetables</li>
+      <li>Straw</li>
+      <li>Hay</li>
     </ul>
   </div>
 );
@@ -89,7 +90,14 @@ const App = () => (
         </Routes>
       </main>
       <footer className="footer">
-        &copy; 2025 Coatesville Farm. All rights reserved.
+        <div className="footer-contact">
+          <p>📍 14072 Old Ridge Road, Beaverdam, VA</p>
+          <p>📞 <a href="tel:+18045551234" className="footer-link">(804) 555-1234</a></p>
+          <p>✉️ <a href="mailto:info@coatesvillefarm.com" className="footer-link">info@coatesvillefarm.com</a></p>
+        </div>
+        <div className="footer-copy">
+          &copy; {new Date().getFullYear()} Coatesville Farm. All rights reserved.
+        </div>
       </footer>
     </div>
   </Router>

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "date-fns": "^4.1.0",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {

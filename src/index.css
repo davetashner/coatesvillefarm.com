@@ -154,6 +154,24 @@ h1, h2, h3 {
   margin-top: 0.25rem;
 }
 
+.helper-text-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+}
+
+.helper-text {
+  color: #4e6c50;
+  font-size: 0.85rem;
+  font-family: 'Lora', serif;
+  font-weight: normal;
+}
+
+.helper-text-group small {
+  color: #4e6c50;
+  font-size: 0.75rem;
+}
+
 .submit-button {
   background-color: #2e7d32;
   color: white;

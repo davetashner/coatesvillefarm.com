@@ -18,11 +18,13 @@ const NavBar = () => (
 const getLogoForSeason = () => {
   const now = new Date();
   const month = now.getMonth(); // 0 = Jan, 11 = Dec
+  const hour = now.getHours();  // 0 - 23
 
-  // Show fall logo from September (8) through November (10)
-  if (month >= 8 && month <= 10) {
-    return "/assets/img/logo-fall.png";
-  }
+  const isFall = month >= 8 && month <= 10;
+  const isNight = hour < 6 || hour >= 18;
+
+  if (isFall) return "/assets/img/logo-fall.png";
+  if (isNight) return "/assets/img/logo-night.png"; // ← your new image
   return "/assets/img/logo.png";
 };
 

@@ -37,6 +37,11 @@ const Home = () => (
 const About = () => (
   <div className="page">
     <h2 className="page-title">About Us</h2>
+    <img
+      src="/assets/img/silo-rainbow.png"
+      alt="Coatesville Farm with rainbow"
+      className="about-image"
+    />
     <p>
       Coatesville Farm is a family-run farm located in the heart of Beaverdam, Virginia. With a passion for sustainable agriculture and a commitment to community values, we grow crops with care and purpose across generations.
     </p>

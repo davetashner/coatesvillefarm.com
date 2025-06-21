@@ -51,7 +51,7 @@ h1, h2, h3 {
 .swan {
   position: absolute;
   bottom: 22.5%;       /* Adjusted for pond height */
-  left: 12%;           /* Start position */
+  left: 2%;           /* Start position */
   width: 60px;
   opacity: 0.95;
   animation: floatGentle 60s ease-in-out infinite alternate;

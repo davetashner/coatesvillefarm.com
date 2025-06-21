@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import { getLogoPath } from "./utils/logoUtils.js";
+import Contact from "./Contact.jsx";
 
 const NavBar = () => (
   <nav className="navbar">
@@ -52,25 +53,6 @@ const Crops = () => (
       <li>Straw</li>
       <li>Hay</li>
     </ul>
-  </div>
-);
-
-const Contact = () => (
-  <div className="page">
-    <h2 className="page-title">Contact Us</h2>
-    <p>
-      Email us at <a href="mailto:info@coatesvillefarm.com" className="email-link">info@coatesvillefarm.com</a>
-    </p>
-    <p>
-      📍 <a
-        href="https://maps.app.goo.gl/7daPheXtBUPiJES87"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="footer-link"
-      >
-        14072 Old Ridge Road, Beaverdam, VA
-      </a>
-    </p>
   </div>
 );
 

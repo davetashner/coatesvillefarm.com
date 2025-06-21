@@ -62,8 +62,11 @@ jobs:
           AWS_REGION: us-east-1
           SOURCE_DIR: "dist"
 
-      - name: Upload favicon separately to root
-        run: aws s3 cp dist/favicon.ico s3://coatesvillefarm.com/favicon.ico
+      - name: Upload favicon.ico with correct Content-Type
+        run: |
+          aws s3 cp dist/favicon.ico s3://coatesvillefarm.com/favicon.ico \
+            --content-type "image/x-icon" \
+            --metadata-directive REPLACE
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

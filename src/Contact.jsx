@@ -47,38 +47,44 @@ const Contact = () => {
         </div>
 
         <label>
-          Your Name (First Last)*:
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            required
-            onChange={handleChange}
-          />
-        </label>
+            Your Name (First Last)*:
+            <input
+                type="text"
+                name="name"
+                value={form.name}
+                required
+                onChange={handleChange}
+            />
+            <small className="helper-text">Please enter your full name.</small>
+            </label>
 
-        <label>
-          Your Email*:
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            required
-            onChange={handleChange}
-          />
-          {errors.email && <small className="error">{errors.email}</small>}
-        </label>
+            <label>
+            Your Email*:
+            <input
+                type="email"
+                name="email"
+                value={form.email}
+                required
+                onChange={handleChange}
+            />
+            {errors.email ? (
+                <small className="error">{errors.email}</small>
+            ) : (
+                <small className="helper-text">We'll use this to reply to your message.</small>
+            )}
+            </label>
 
-        <label>
-          Message*:
-          <textarea
-            name="message"
-            rows="5"
-            value={form.message}
-            required
-            onChange={handleChange}
-          />
-        </label>
+            <label>
+            Message*:
+            <textarea
+                name="message"
+                rows="5"
+                value={form.message}
+                required
+                onChange={handleChange}
+            />
+            <small className="helper-text">Let us know how we can help.</small>
+            </label>
 
         {showButton && (
           <button type="submit" className="submit-button">

@@ -52,6 +52,7 @@ const Contact = () => {
                 type="text"
                 name="name"
                 value={form.name}
+                maxLength={100}
                 required
                 onChange={handleChange}
             />
@@ -67,6 +68,7 @@ const Contact = () => {
                 type="email"
                 name="email"
                 value={form.email}
+                maxLength={100}
                 required
                 onChange={handleChange}
             />

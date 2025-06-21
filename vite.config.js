@@ -1,5 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 
-export default defineConfig({
-  base: '/', // Ensures paths like /favicon.ico are not prefixed with /assets/
-})
+export default {
+  css: {
+    preprocessorOptions: {
+      css: {
+        additionalData: `@import './src/index.css';`,
+      },
+    },
+  },
+};

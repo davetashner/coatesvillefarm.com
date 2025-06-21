@@ -10,7 +10,6 @@ body, html, .main-content, .app-container {
   margin: 0;
   padding: 0;
   width: 100%;
-  box-sizing: border-box;
 }
 
 h1, h2, h3 {
@@ -217,7 +216,7 @@ h1, h2, h3 {
 }
 
 .main-content {
-  flex: 1;
+  flex: unset;
   padding: 0;
   margin: 0;
 }

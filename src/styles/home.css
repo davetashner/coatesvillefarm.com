@@ -1,0 +1,205 @@
+.home {
+  text-align: center;
+  padding: var(--space-sm);
+}
+
+.home-title {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+}
+
+.home-subtitle {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-primary);
+  font-family: var(--font-body);
+}
+
+.logo {
+  background-color: var(--color-white);
+  border: 4px solid var(--color-accent);
+  border-radius: 25%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: block;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* ========== Hero Section ========== */
+.hero {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  background-color: var(--color-white);
+  animation: fadeInHero 1s ease-out;
+  border: none;
+  border-radius: 0;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--color-white);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  padding: var(--space-sm);
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-white);
+  font-size: 2rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes fadeInHero {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== Clouds & Swans ========== */
+.cloud {
+  position: absolute;
+  top: 10%;
+  width: 200px;
+  opacity: 0.8;
+  animation: floatCloud 60s linear infinite;
+  pointer-events: none;
+}
+
+.cloud-1 {
+  left: -250px;
+  opacity: 0.90;
+  top: 15%;
+  animation-delay: 0s;
+}
+
+.cloud-2 {
+  left: -300px;
+  opacity: 0.95;
+  top: 30%;
+  animation-delay: 10s;
+}
+
+.cloud-3 {
+  left: -200px;
+  opacity: 0.95;
+  top: 15%;
+  animation-delay: 18s;
+}
+
+@keyframes floatCloud {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + 250px));
+  }
+}
+
+.swan {
+  position: absolute;
+  bottom: 22.5%;
+  left: 2%;
+  width: 60px;
+  opacity: 0.95;
+  animation: floatGentle 60s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.swan-2 {
+  left: 20%;
+  animation-delay: 30s;
+}
+
+@keyframes floatGentle {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -1px);
+  }
+  50% {
+    transform: translate(20px, 1px);
+  }
+  75% {
+    transform: translate(10px, -1px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* ========== Mobile Styles ========== */
+@media (max-width: 600px) {
+  .home-title {
+    font-size: 2rem;
+  }
+
+  .home-subtitle {
+    font-size: 1rem;
+  }
+
+  .logo {
+    max-width: 180px;
+  }
+
+  .cloud {
+    width: 100px;
+    animation-duration: 30s;
+  }
+
+  .cloud-1 {
+    left: -100px;
+    top: 10%;
+  }
+
+  .cloud-2 {
+    left: -120px;
+    top: 20%;
+  }
+
+  .cloud-3 {
+    left: -80px;
+    top: 10%;
+  }
+
+  .swan {
+    width: 30px;
+    animation-duration: 40s;
+  }
+
+  .swan-2 {
+    left: 18%;
+    animation-delay: 20s;
+  }
+}

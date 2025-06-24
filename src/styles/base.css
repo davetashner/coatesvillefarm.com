@@ -1,0 +1,113 @@
+/* ================================
+   Base CSS – Global Defaults
+   ================================ */
+
+/* Reset & Box Sizing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root HTML */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: bold;
+  line-height: 1.2;
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: var(--font-size-xxl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4 { font-size: var(--font-size-md); }
+h5 { font-size: var(--font-size-sm); }
+h6 { font-size: var(--font-size-xs); }
+
+/* Paragraphs */
+p {
+  margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+/* Images & Media */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Forms */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+/* Lists */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Accessibility */
+:focus {
+  outline: 2px dashed var(--color-accent);
+  outline-offset: 4px;
+}

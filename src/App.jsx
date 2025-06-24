@@ -10,54 +10,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import SeasonalLogo from "./SeasonalLogo.jsx";
 import Contact from "./Contact.jsx";
 import Home from "./Home.jsx";
-
-const NavBar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
-  const location = useLocation();
-
-  const toggleMenu = () => setMenuOpen(prev => !prev);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 600);
-      if (window.innerWidth > 600) {
-        setMenuOpen(false); // always close mobile menu on desktop resize
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const navLinksClass = isMobile
-    ? `navbar-links ${menuOpen ? "mobile-visible" : "mobile-hidden"}`
-    : "navbar-links";
-
-  return (
-    <nav className="navbar">
-      <Link to="/">
-        <SeasonalLogo className="navbar-logo" />
-      </Link>
-
-      {isMobile && (
-        <button
-          className="menu-toggle"
-          onClick={toggleMenu}
-          aria-label="Toggle navigation"
-        >
-          ☰
-        </button>
-      )}
-
-      <div className={navLinksClass}>
-        <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Home</Link>
-        <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>About</Link>
-        <Link to="/crops" className={`nav-link ${location.pathname === '/crops' ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Crops</Link>
-        <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Contact</Link>
-      </div>
-    </nav>
-  );
-};
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const About = () => (
   <div className="page">
@@ -104,7 +58,7 @@ const App = () => (
   <HelmetProvider>
     <Router>
       <div className="app-container">
-        <NavBar />
+        <Header />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -113,25 +67,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
-        <footer className="footer">
-          <div className="footer-contact">
-            <p>
-              📍 <a
-                href="https://maps.app.goo.gl/7daPheXtBUPiJES87"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                14072 Old Ridge Road, Beaverdam, VA
-              </a>
-            </p>
-            <p>📞 <a href="tel:+18045551234" className="footer-link">(804) 555-1234</a></p>
-            <p>✉️ <a href="mailto:info@coatesvillefarm.com" className="footer-link">info@coatesvillefarm.com</a></p>
-          </div>
-          <div className="footer-copy">
-            &copy; {new Date().getFullYear()} Coatesville Farm. All rights reserved.
-          </div>
-        </footer>
+        <Footer />
       </div>
     </Router>
   </HelmetProvider>

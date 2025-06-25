@@ -1,0 +1,105 @@
+/* Contact Page Container */
+.page.contact-page {
+  padding: var(--space-md) var(--space-sm);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Contact Form */
+.contact-form {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: var(--font-body);
+}
+
+/* Labels */
+.contact-form label {
+  font-weight: bold;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+
+/* Inputs and Textareas */
+.contact-form input,
+.contact-form textarea {
+  margin-top: var(--space-xs);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: var(--font-body);
+  background-color: #f9fff8; /* Optional: replace with a new var if desired */
+  transition: border-color 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* Helper Text and Errors */
+.contact-form small {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #4e6b4e; /* Optional: define in variables if reused */
+}
+
+.contact-form .error {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+/* Optional Helper Text Group Layout */
+.helper-text-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+}
+
+.helper-text {
+  color: #4e6c50; /* Optional: define in variables */
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-weight: normal;
+}
+
+/* Submit Button */
+.submit-button {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  border-radius: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  align-self: flex-start;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.submit-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .submit-button {
+    align-self: center;
+  }
+}

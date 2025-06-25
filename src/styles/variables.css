@@ -1,0 +1,31 @@
+/* Color palette */
+:root {
+  --color-primary: #2e7d32;       /* Forest green */
+  --color-primary-dark: #1b5e20;
+  --color-accent: #a3d9a5;        /* Light green accent */
+  --color-background: #f1fce9;    /* Light green background */
+  --color-surface: #ffffff;       /* White surfaces */
+  --color-text: #1b3c1b;          /* Deep green text */
+  --color-link: #1565c0;          /* Link blue */
+  --color-link-hover: #0d47a1;
+
+  /* Typography */
+  --font-body: 'Lora', serif;
+  --font-heading: 'Pacifico', cursive;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3rem;
+
+  /* Border radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 2rem;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

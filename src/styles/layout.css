@@ -1,0 +1,73 @@
+/* Root element (typically wraps the app) */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Top-level layout wrapper */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+}
+
+/* Main content area grows to fill space between nav and footer */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page content section */
+.page {
+  padding: var(--space-lg) var(--space-sm);
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-sm);
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+}
+
+/* Utility spacing classes */
+.text-center {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: var(--space-xs);
+}
+
+.mt-4 {
+  margin-top: var(--space-sm);
+}
+
+/* Prevent extra spacing under images */
+img {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .page {
+    padding: var(--space-sm);
+  }
+
+  .page-title {
+    font-size: var(--font-size-lg);
+  }
+}

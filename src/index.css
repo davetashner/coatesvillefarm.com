@@ -1,5 +1,6 @@
 @import './styles/variables.css';
 @import './styles/base.css';
+@import './styles/footer.css';
 @import './styles/layout.css';
 @import './styles/home.css';
 @import './styles/contact.css';
@@ -13,7 +14,9 @@ body {
 }
 
 body, html, .main-content, .app-container {
+  height: 100%;
   margin: 0;
+  overflow-x: hidden;
   padding: 0;
   width: 100%;
 }
@@ -28,6 +31,7 @@ h1, h2, h3 {
   width: 200px;
   opacity: 0.8;
   animation: floatCloud 60s linear infinite;
+  z-index: 2;
 }
 
 .cloud-1 {
@@ -94,16 +98,17 @@ h1, h2, h3 {
 }
 
 .hero {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  background-color: #ffffff;
   animation: fadeInHero 1s ease-out;
-  border: none; 
-  border-radius: 0; 
+  background-color: white;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
 }
 
 .hero-image {
@@ -113,17 +118,18 @@ h1, h2, h3 {
   margin: 0;
   padding: 0;
   border-radius: 0;
+  z-index: 5;
 }
 
 .hero-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
   color: white;
-  text-shadow: 0 0 10px rgba(0,0,0,0.6);
   padding: 1rem;
+  position: absolute;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3
 }
 
 .hero-text {
@@ -222,7 +228,10 @@ h1, h2, h3 {
 }
 
 .main-content {
+  display: flex;
   flex: unset;
+  flex-direction: column;
+  flex-grow: 1;
   padding: 0;
   margin: 0;
 }
@@ -238,9 +247,8 @@ h1, h2, h3 {
 }
 
 .home {
-  text-align: center;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .logo {
@@ -255,18 +263,6 @@ h1, h2, h3 {
   max-width: 300px;
   object-fit: cover;
   width: 100%;
-}
-
-.home-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #1b5e20;
-}
-
-.home-subtitle {
-  font-size: 1.25rem;
-  font-style: italic;
-  color: #388e3c;
 }
 
 .page {
@@ -374,14 +370,6 @@ h1, h2, h3 {
 
 .submit-button:hover {
   background-color: #1b5e20;
-}
-
-.footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.875rem;
-  color: #666;
-  border-top: 1px solid #c8e6c9;
 }
 
 @media (max-width: 600px) {

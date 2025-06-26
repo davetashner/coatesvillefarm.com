@@ -6,9 +6,9 @@
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 /* Root HTML */
@@ -18,9 +18,9 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
   background-color: var(--color-background);
   color: var(--color-text);
+  font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,10 +28,10 @@ body {
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary-dark);
   font-family: var(--font-heading);
   font-weight: bold;
   line-height: 1.2;
-  color: var(--color-primary-dark);
   margin-bottom: 1rem;
 }
 
@@ -61,33 +61,33 @@ a:hover {
 
 /* Buttons */
 button {
-  font-family: inherit;
-  font-size: 1rem;
-  cursor: pointer;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 /* Images & Media */
 img, video {
-  max-width: 100%;
-  height: auto;
   display: block;
+  height: auto;
+  max-width: 100%;
 }
 
 /* Forms */
 input,
 textarea,
 select {
+  color: var(--color-text);
   font-family: inherit;
   font-size: 1rem;
-  color: var(--color-text);
 }
 
 /* Lists */
 ul, ol {
-  padding-left: 1.5rem;
   margin-bottom: 1rem;
+  padding-left: 1.5rem;
 }
 
 li {
@@ -96,14 +96,14 @@ li {
 
 /* Tables */
 table {
-  width: 100%;
   border-collapse: collapse;
+  width: 100%;
 }
 
 th, td {
+  border-bottom: 1px solid #ccc;
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid #ccc;
 }
 
 /* Accessibility */

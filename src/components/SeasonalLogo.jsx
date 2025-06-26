@@ -13,16 +13,16 @@ const isNightTime = () => {
   return hour < 6 || hour >= 18;
 };
 
-const SeasonalLogo = ({ className = '', season }) => {
+const SeasonalLogo = ({ className = '', season, night }) => {
   const currentSeason = season || getCurrentSeason();
-  const night = isNightTime();
-  const imageName = `logo-${currentSeason}${night ? '-night' : ''}.png`;
+  const isNight = night !== undefined ? night : isNightTime();  // <--- change here
+  const imageName = `logo-${currentSeason}${isNight ? '-night' : ''}.png`;
   const imagePath = `/assets/img/${imageName}`;
 
   return (
     <img
       src={imagePath}
-      alt={`Coatesville Farm logo for ${currentSeason}${night ? ' night' : ''}`}
+      alt={`Coatesville Farm logo for ${currentSeason}${isNight ? ' night' : ''}`}
       className={`logo ${className}`}
     />
   );

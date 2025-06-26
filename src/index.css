@@ -319,8 +319,8 @@ h1, h2, h3 {
   .navbar-logo {
     border-width: 1px;
     height: auto;
-    max-height: 48px;
-    max-width: 48px;
+    max-height: 80px;
+    max-width: 80px;
     object-fit: contain;
     padding: 2px;
     width: auto;
@@ -334,6 +334,7 @@ h1, h2, h3 {
     align-items: center;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     margin-top: 1rem;
     width: 100%;
   }
@@ -369,7 +370,7 @@ h1, h2, h3 {
   }
 
   .logo {
-    max-width: 300px;
-    width: 100%;
+    max-width: 200px;
+    width: 90%;
   }
 }

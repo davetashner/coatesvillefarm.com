@@ -319,11 +319,11 @@ h1, h2, h3 {
   .navbar-logo {
     border-width: 1px;
     height: auto;
-    margin-left: 0;
-    margin-right: 0;
+    max-height: 48px;
     max-width: 48px;
     object-fit: contain;
     padding: 2px;
+    width: auto;
   }
 
   .navbar-links {

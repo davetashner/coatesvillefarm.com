@@ -1,20 +1,20 @@
 .home {
+  padding: 0 !important;
   text-align: center;
-  padding: var(--space-sm);
 }
 
 .home-title {
-  font-size: 2.5rem;
-  margin-bottom: var(--space-sm);
   color: var(--color-primary-dark);
+  font-size: 2.5rem;
   font-family: var(--font-heading);
+  margin-bottom: var(--space-sm);
 }
 
 .home-subtitle {
-  font-size: 1.25rem;
-  font-style: italic;
   color: var(--color-primary);
   font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-style: italic;
 }
 
 .logo {
@@ -28,51 +28,56 @@
   margin-right: auto;
   max-width: 300px;
   object-fit: cover;
+  position: relative;
   width: 100%;
+  z-index: 10;
 }
 
 /* ========== Hero Section ========== */
 .hero {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  background-color: var(--color-white);
   animation: fadeInHero 1s ease-out;
+  background-color: var(--color-white);
   border: none;
   border-radius: 0;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  flex: 1;
+  flex-grow: 1;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100vw;
 }
 
 .hero-image {
-  width: 100%;
-  max-width: 100%;
+  border-radius: 0;
   display: block;
   margin: 0;
+  max-width: 100%;
   padding: 0;
-  border-radius: 0;
+  width: 100%;
+  z-index: 5;
 }
 
 .hero-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
   color: var(--color-white);
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  left: 50%;
   padding: var(--space-sm);
+  position: absolute;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .hero-text {
-  position: absolute;
   bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
   color: var(--color-white);
   font-size: 2rem;
+  left: 50%;
+  position: absolute;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  transform: translateX(-50%);
 }
 
 @keyframes fadeInHero {
@@ -86,35 +91,37 @@
   }
 }
 
-/* ========== Clouds & Swans ========== */
+/* ========== Clouds & Birds ========== */
 .cloud {
+  animation: floatCloud 60s linear infinite;
+  opacity: 0.8;
+  pointer-events: none;
   position: absolute;
   top: 10%;
   width: 200px;
-  opacity: 0.8;
-  animation: floatCloud 60s linear infinite;
-  pointer-events: none;
+  z-index: 1;
 }
 
 .cloud-1 {
+  animation-delay: 0s;
   left: -250px;
   opacity: 0.90;
   top: 15%;
-  animation-delay: 0s;
 }
 
 .cloud-2 {
+  animation-delay: 5s;
   left: -300px;
   opacity: 0.95;
   top: 30%;
-  animation-delay: 10s;
 }
 
 .cloud-3 {
-  left: -200px;
-  opacity: 0.95;
-  top: 15%;
   animation-delay: 18s;
+  left: -200px;
+  opacity: 0.75;
+  top: 35%;
+  z-index: 10;
 }
 
 @keyframes floatCloud {
@@ -126,19 +133,69 @@
   }
 }
 
-.swan {
+.animated-bird {
+  animation: floatGlide 60s ease-in-out infinite alternate;
   position: absolute;
+  top: 15%;
+  transition: none;
+  width: 7%;
+  z-index: 11;
+}
+
+.chirp-bubble {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  color: black;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  opacity: .75;
+  padding: 4px 8px;
+  pointer-events: none;
+  position: absolute;
+  top: 12%;
+  transition: opacity 0.3s ease;
+  z-index: 2000;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(0); }
+  10% { opacity: 1; transform: translateY(-5px); }
+  90% { opacity: 1; transform: translateY(-5px); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+@keyframes floatGlide {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.swan {
+  animation: floatGentle 60s ease-in-out infinite alternate;
   bottom: 22.5%;
   left: 2%;
-  width: 60px;
   opacity: 0.95;
-  animation: floatGentle 60s ease-in-out infinite alternate;
   pointer-events: none;
+  position: absolute;
+  width: 60px;
 }
 
 .swan-2 {
-  left: 20%;
   animation-delay: 30s;
+  left: 20%;
 }
 
 @keyframes floatGentle {
@@ -174,8 +231,9 @@
   }
 
   .cloud {
-    width: 100px;
     animation-duration: 30s;
+    width: 100px;
+    z-index: 1;
   }
 
   .cloud-1 {
@@ -191,15 +249,16 @@
   .cloud-3 {
     left: -80px;
     top: 10%;
+    z-index: 6;
   }
 
   .swan {
-    width: 30px;
     animation-duration: 40s;
+    width: 30px;
   }
 
   .swan-2 {
-    left: 18%;
     animation-delay: 20s;
+    left: 18%;
   }
 }

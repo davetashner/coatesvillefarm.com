@@ -11,33 +11,33 @@
   background-color: var(--color-surface);
   border: 1px solid var(--color-accent);
   border-radius: var(--radius-md);
-  padding: var(--space-md);
   box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
   font-family: var(--font-body);
+  gap: 1.5rem;
+  padding: var(--space-md);
 }
 
 /* Labels */
 .contact-form label {
-  font-weight: bold;
   color: var(--color-text);
   display: flex;
   flex-direction: column;
   font-size: 1rem;
+  font-weight: bold;
 }
 
 /* Inputs and Textareas */
 .contact-form input,
 .contact-form textarea {
-  margin-top: var(--space-xs);
-  padding: 0.75rem 1rem;
+  background-color: #f9fff8; /* Optional: replace with a new var if desired */
   border: 1px solid var(--color-accent);
   border-radius: var(--radius-sm);
-  font-size: 1rem;
   font-family: var(--font-body);
-  background-color: #f9fff8; /* Optional: replace with a new var if desired */
+  font-size: 1rem;
+  margin-top: var(--space-xs);
+  padding: 0.75rem 1rem;
   transition: border-color 0.2s ease;
 }
 
@@ -49,9 +49,9 @@
 
 /* Helper Text and Errors */
 .contact-form small {
-  margin-top: 0.25rem;
-  font-size: 0.875rem;
   color: #4e6b4e; /* Optional: define in variables if reused */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 
 .contact-form .error {
@@ -76,17 +76,17 @@
 
 /* Submit Button */
 .submit-button {
+  align-self: flex-start;
   background-color: var(--color-primary);
-  color: var(--color-surface);
   border: none;
   border-radius: 2rem;
-  padding: 0.75rem 1.5rem;
+  color: var(--color-surface);
+  cursor: pointer;
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: bold;
-  align-self: flex-start;
-  cursor: pointer;
+  padding: 0.75rem 1.5rem;
   transition: background-color 0.2s ease;
-  font-family: var(--font-body);
 }
 
 .submit-button:hover {

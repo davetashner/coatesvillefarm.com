@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Contact from "../Contact";
+import Contact from "../pages/Contact";
 import { act } from "react";
 
 test("renders Contact page content", () => {

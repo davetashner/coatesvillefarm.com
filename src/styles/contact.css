@@ -74,6 +74,11 @@
   font-weight: normal;
 }
 
+.helper-text-group small {
+  color: #4e6c50;
+  font-size: 0.75rem;
+}
+
 /* Submit Button */
 .submit-button {
   align-self: flex-start;

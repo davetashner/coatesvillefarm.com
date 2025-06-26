@@ -1,21 +1,21 @@
 .footer {
   background-color: var(--color-bg);
   border-top: 2px solid var(--color-accent);
+  color: var(--color-text);
+  font-family: var(--font-body);
   padding: var(--space-md) var(--space-sm);
   text-align: center;
-  font-family: var(--font-body);
-  color: var(--color-text);
 }
 
 .footer-contact {
-  margin-bottom: var(--space-sm);
   line-height: 1.75;
+  margin-bottom: var(--space-sm); 
 }
 
 .footer-link {
   color: var(--color-primary);
-  text-decoration: none;
   font-weight: 500;
+  text-decoration: none;
   transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
@@ -25,8 +25,8 @@
 }
 
 .footer-copy {
-  font-size: 0.875rem;
   color: var(--color-muted);
+  font-size: 0.875rem;
   margin-top: var(--space-sm);
 }
 

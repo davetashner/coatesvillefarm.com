@@ -27,7 +27,7 @@ export default function Header() {
     <header>
       <nav className="navbar">
         <Link to="/" className="navbar-logo-link" onClick={() => setMenuOpen(false)}>
-          <SeasonalLogo className="navbar-logo" />
+          <SeasonalLogo className="logo navbar-logo" />
         </Link>
 
         {isMobile && (

@@ -227,11 +227,7 @@
   }
 
   .logo {
-    /* max-width: 180px; */
-    height: 40px;         /* Adjust to desired height */
-    width: auto;          /* Preserve aspect ratio */
-    object-fit: contain;  /* Ensures no cropping */
-    display: block;
+    max-width: 180px;
   }
 
   .cloud {

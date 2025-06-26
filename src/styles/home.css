@@ -226,19 +226,6 @@
     font-size: 1rem;
   }
 
-  .logo {
-    /* max-width: 180px; */
-    width: auto;
-  }
-
-  .logo.navbar-logo {
-    border-width: 1px !important;
-    height: auto !important;
-    max-width: 48px !important;
-    object-fit: contain !important;
-    padding: 0 !important;
-  }
-
   .cloud {
     animation-duration: 30s;
     width: 100px;

@@ -26,33 +26,33 @@ h1, h2, h3 {
 }
 
 .cloud {
+  animation: floatCloud 60s linear infinite;
+  opacity: 0.8;
   position: absolute;
   top: 10%;
   width: 200px;
-  opacity: 0.8;
-  animation: floatCloud 60s linear infinite;
   z-index: 2;
 }
 
 .cloud-1 {
+  animation-delay: 0s;
   left: -250px;
   opacity: 0.90;
   top: 15%;
-  animation-delay: 0s;
 }
 
 .cloud-2 {
+  animation-delay: 10s;
   left: -300px;
   opacity: 0.95;
   top: 30%;
-  animation-delay: 10s;
 }
 
 .cloud-3 {
+  animation-delay: 18s;
   left: -200px;
   opacity: 0.95;
   top: 15%;
-  animation-delay: 18s;
 }
 
 @keyframes floatCloud {
@@ -65,13 +65,13 @@ h1, h2, h3 {
 }
 
 .swan {
-  position: absolute;
+  animation: floatGentle 60s ease-in-out infinite alternate;
   bottom: 22.5%;
   left: 2%;
-  width: 60px;
   opacity: 0.95;
-  animation: floatGentle 60s ease-in-out infinite alternate;
   pointer-events: none;
+  position: absolute;
+  width: 60px;
 }
 
 .swan-2 {
@@ -112,12 +112,12 @@ h1, h2, h3 {
 }
 
 .hero-image {
-  width: 100%;
-  max-width: 100%;
+  border-radius: 0;
   display: block;
   margin: 0;
+  max-width: 100%;
   padding: 0;
-  border-radius: 0;
+  width: 100%;
   z-index: 5;
 }
 
@@ -133,13 +133,13 @@ h1, h2, h3 {
 }
 
 .hero-text {
-  position: absolute;
   bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
   color: white;
   font-size: 2rem;
+  left: 50%;
+  position: absolute;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  transform: translateX(-50%);
 }
 
 @keyframes fadeInHero {
@@ -160,10 +160,10 @@ h1, h2, h3 {
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: #336816;
+  display: flex;
+  justify-content: space-between;
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
@@ -180,23 +180,23 @@ h1, h2, h3 {
 }
 
 .menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
   display: none;
+  font-size: 2rem;
   position: absolute;
   right: 1rem;
   top: 1rem;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
   z-index: 1001;
 }
 
 .navbar-links {
   display: flex;
+  flex: 1;
   gap: 2rem;
   justify-content: center;
-  flex: 1;
 }
 
 .navbar-links.mobile-hidden {
@@ -204,18 +204,18 @@ h1, h2, h3 {
 }
 
 .navbar-links.mobile-visible {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
   margin-top: 1rem;
-  align-items: center;
+  width: 100%;
 }
 
 .nav-link {
   color: white;
-  text-decoration: none;
-  font-weight: 500;
   font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
 }
 
 .nav-link:hover {
@@ -237,13 +237,13 @@ h1, h2, h3 {
 }
 
 .about-image {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
   border-radius: 12px;
-  margin: 1rem auto;
-  display: block;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: block;
+  height: auto;  
+  margin: 1rem auto;
+  max-width: 800px;
+  width: 100%;
 }
 
 .home {
@@ -266,8 +266,8 @@ h1, h2, h3 {
 }
 
 .page {
-  max-width: 700px;
   margin: 0 auto;
+  max-width: 700px;
   padding: 2rem;
 }
 
@@ -287,17 +287,17 @@ h1, h2, h3 {
 }
 
 .submit-button {
+  align-self: flex-start;
   background-color: #2e7d32;
-  color: white;
   border: none;
   border-radius: 2rem;
-  padding: 0.75rem 1.5rem;
+  color: white;
+  cursor: pointer;
+  font-family: 'Lora', serif;
   font-size: 1rem;
   font-weight: bold;
-  align-self: flex-start;
-  cursor: pointer;
+  padding: 0.75rem 1.5rem;
   transition: background-color 0.2s ease;
-  font-family: 'Lora', serif;
 }
 
 .submit-button:hover {
@@ -306,10 +306,10 @@ h1, h2, h3 {
 
 @media (max-width: 600px) {
   .navbar {
-    flex-direction: row;
     align-items: center;
-    padding: 0.75rem 1rem;
+    flex-direction: row;
     flex-wrap: wrap;
+    padding: 0.75rem 1rem;
   }
 
   .menu-toggle {
@@ -317,12 +317,13 @@ h1, h2, h3 {
   }
 
   .navbar-logo {
-    border-width: 2px;
-    display: block;
-    height: 48px;
-    margin-bottom: 0;
+    border-width: 1px;
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 48px;
     object-fit: contain;
-    width: auto;
+    padding: 2px;
   }
 
   .navbar-links {
@@ -330,16 +331,16 @@ h1, h2, h3 {
   }
 
   .navbar-links.mobile-visible {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin-top: 1rem;
-    align-items: center;
+    width: 100%;
   }
 
   .cloud {
-    width: 100px;
     animation-duration: 30s;
+    width: 100px;
   }
 
   .cloud-1 {
@@ -358,17 +359,17 @@ h1, h2, h3 {
   }
 
   .swan {
-    width: 30px;
     animation-duration: 40s;
+    width: 30px;
   }
 
   .swan-2 {
+    animation-delay: 5s;
     left: 18%;
-    animation-delay: 20s;
   }
 
   .logo {
-    max-width: 180px;
-    
+    max-width: 300px;
+    width: 100%;
   }
 }

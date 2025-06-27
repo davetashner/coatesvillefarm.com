@@ -4,6 +4,22 @@ import SeasonalLogo from '../components/SeasonalLogo.jsx';
 
 export default function Home() {
   const [chirped, setChirped] = useState(false);
+  const gooseAudioRef = useRef(null);
+  const goslingAudioRef = useRef(null);
+
+  const handleGooseClick = () => {
+    if (gooseAudioRef.current) {
+      gooseAudioRef.current.currentTime = 0;
+      gooseAudioRef.current.play();
+    }
+  };
+
+  const handleGoslingClick = () => {
+    if (goslingAudioRef.current) {
+      goslingAudioRef.current.currentTime = 0;
+      goslingAudioRef.current.play();
+    }
+  };
 
   const handleBirdClick = () => {
     setChirped(true);
@@ -28,9 +44,33 @@ export default function Home() {
         <img src="/assets/img/cloud-1.png" alt="Cloud 1" className="cloud cloud-1" />
         <img src="/assets/img/cloud-2.png" alt="Cloud 2" className="cloud cloud-2" />
         <img src="/assets/img/cloud-3.png" alt="Cloud 3" className="cloud cloud-3" />
-        <img src="/assets/img/canada-goose-1.png" alt="Goose" className="goose" />
-        <img src="/assets/img/canada-goose-2.png" alt="Goose 2" className="goose goose-2" />
-        <img src="/assets/img/canada-goose-3.png" alt="Goose 3" className="goose goose-3" />
+
+        {/* Goose Images with Sound */}
+        <img
+          src="/assets/img/canada-goose-1.png"
+          alt="Goose"
+          className="goose"
+          onClick={handleGooseClick}
+          onTouchStart={handleGooseClick}
+        />
+        <img
+          src="/assets/img/canada-goose-2.png"
+          alt="Goose 2"
+          className="goose goose-2"
+          onClick={handleGooseClick}
+          onTouchStart={handleGooseClick}
+        />
+        <img
+          src="/assets/img/canada-goose-3.png"
+          alt="Goose 3"
+          className="goose goose-3"
+          onClick={handleGoslingClick}
+          onTouchStart={handleGoslingClick}
+        />
+
+        {/* Audio elements */}
+        <audio ref={gooseAudioRef} src="/assets/audio/canada-goose-1.m4a" preload="auto" />
+        <audio ref={goslingAudioRef} src="/assets/audio/canada-gosling-1.m4a" preload="auto" />
       </section>
     </div>
   );

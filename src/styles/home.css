@@ -164,7 +164,6 @@
   bottom: 22.5%;
   left: 2%;
   opacity: 0.95;
-  pointer-events: none;
   position: absolute;
   width: 60px;
 }
@@ -243,7 +242,7 @@
     left: 18%;
   }
 
-    .goose-3 {
+  .goose-3 {
     animation-delay: 22s;
     bottom: 20%;
     left: 8%;

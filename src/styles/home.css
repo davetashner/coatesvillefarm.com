@@ -119,6 +119,7 @@
 
 .animated-bird {
   animation: floatGlide 60s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  animation-delay: 7s;
   position: absolute;
   top: 15%;
   transition: none;
@@ -158,7 +159,7 @@
   100% { transform: translateX(0); }
 }
 
-.swan {
+.goose {
   animation: floatGentle 60s ease-in-out infinite alternate;
   bottom: 22.5%;
   left: 2%;
@@ -168,9 +169,16 @@
   width: 60px;
 }
 
-.swan-2 {
-  animation-delay: 30s;
+.goose-2 {
+  animation-delay: 20s;
+  bottom: 24.5%;
   left: 20%;
+}
+
+.goose-3 {
+  animation-delay: 40s;
+  bottom: 20.5%;
+  left: 25%;
 }
 
 @keyframes floatGentle {
@@ -223,15 +231,21 @@
     z-index: 6;
   }
 
-  .swan {
+  .goose {
     animation-duration: 40s;
+    bottom: 22%;
     width: 30px;
   }
 
-  .swan-2 {
+  .goose-2 {
     animation-delay: 20s;
+    bottom: 24%;
     left: 18%;
   }
 
-  /* Optional: .logo here only if it’s hero-specific (not navbar) */
+    .goose-3 {
+    animation-delay: 22s;
+    bottom: 20%;
+    left: 8%;
+  }
 }

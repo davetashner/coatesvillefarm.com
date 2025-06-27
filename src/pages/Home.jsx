@@ -28,8 +28,9 @@ export default function Home() {
         <img src="/assets/img/cloud-1.png" alt="Cloud 1" className="cloud cloud-1" />
         <img src="/assets/img/cloud-2.png" alt="Cloud 2" className="cloud cloud-2" />
         <img src="/assets/img/cloud-3.png" alt="Cloud 3" className="cloud cloud-3" />
-        <img src="/assets/img/swan-1.png" alt="Swan" className="swan" />
-        <img src="/assets/img/swan-2.png" alt="Swan 2" className="swan swan-2" />
+        <img src="/assets/img/canada-goose-1.png" alt="Goose" className="goose" />
+        <img src="/assets/img/canada-goose-2.png" alt="Goose 2" className="goose goose-2" />
+        <img src="/assets/img/canada-goose-3.png" alt="Goose 3" className="goose goose-3" />
       </section>
     </div>
   );

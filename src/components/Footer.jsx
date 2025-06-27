@@ -20,14 +20,14 @@ const Footer = () => {
         </p>
         <p>
           📞{" "}
-          <a href="tel:+18045551234" className="footer-link">
-            (804) 555-1234
+          <a href="tel:+18044496016" className="footer-link">
+            (804) 449-6016
           </a>
         </p>
         <p>
           ✉️{" "}
-          <a href="mailto:info@coatesvillefarm.com" className="footer-link">
-            info@coatesvillefarm.com
+          <a href="mailto:coatesvillefarm@gmail.com" className="footer-link">
+            coatesvillefarm@gmail.com
           </a>
         </p>
       </div>

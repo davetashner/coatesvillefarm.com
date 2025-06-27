@@ -64,39 +64,6 @@ h1, h2, h3 {
   }
 }
 
-.swan {
-  animation: floatGentle 60s ease-in-out infinite alternate;
-  bottom: 22.5%;
-  left: 2%;
-  opacity: 0.95;
-  pointer-events: none;
-  position: absolute;
-  width: 60px;
-}
-
-.swan-2 {
-  left: 20%;
-  animation-delay: 30s;
-}
-
-@keyframes floatGentle {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(10px, -1px);
-  }
-  50% {
-    transform: translate(20px, 1px);
-  }
-  75% {
-    transform: translate(10px, -1px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
@@ -113,15 +80,6 @@ h1, h2, h3 {
   top: 0;
   z-index: 1000;
 }
-
-/* .navbar-logo {
-  border-radius: 0;
-  height: auto;
-  max-height: 48px;
-  max-width: 48px;
-  object-fit: cover;
-  width: auto;
-} */
 
 .navbar-logo {
   border-radius: 25%;

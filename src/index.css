@@ -97,62 +97,6 @@ h1, h2, h3 {
   }
 }
 
-.hero {
-  animation: fadeInHero 1s ease-out;
-  background-color: white;
-  border: none;
-  border-radius: 0;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-  width: 100%;
-}
-
-.hero-image {
-  border-radius: 0;
-  display: block;
-  margin: 0;
-  max-width: 100%;
-  padding: 0;
-  width: 100%;
-  z-index: 5;
-}
-
-.hero-overlay {
-  color: white;
-  padding: 1rem;
-  position: absolute;
-  text-align: center;
-  text-shadow: 0 0 10px rgba(0,0,0,0.6);
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3
-}
-
-.hero-text {
-  bottom: 10%;
-  color: white;
-  font-size: 2rem;
-  left: 50%;
-  position: absolute;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  transform: translateX(-50%);
-}
-
-@keyframes fadeInHero {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
@@ -170,11 +114,20 @@ h1, h2, h3 {
   z-index: 1000;
 }
 
-.navbar-logo {
+/* .navbar-logo {
   border-radius: 0;
   height: auto;
-  max-height: 60px;
-  max-width: 60px;
+  max-height: 48px;
+  max-width: 48px;
+  object-fit: cover;
+  width: auto;
+} */
+
+.navbar-logo {
+  border-radius: 25%;
+  height: 48px;
+  max-height: 48px;
+  max-width: 48px;
   object-fit: cover;
   width: auto;
 }
@@ -262,7 +215,7 @@ h1, h2, h3 {
   margin-right: auto;
   max-width: 300px;
   object-fit: cover;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .page {
@@ -316,7 +269,7 @@ h1, h2, h3 {
     display: block;
   }
 
-  .navbar-logo {
+  /* .navbar-logo {
     border-width: 1px;
     height: auto;
     max-height: 80px;
@@ -324,6 +277,19 @@ h1, h2, h3 {
     object-fit: contain;
     padding: 2px;
     width: auto;
+  } */
+
+  .navbar-logo {
+    max-width: 80px;
+    max-height: 48px;
+  }
+
+  .hero-logo {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 25%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   .navbar-links {
@@ -337,40 +303,5 @@ h1, h2, h3 {
     gap: 1rem;
     margin-top: 1rem;
     width: 100%;
-  }
-
-  .cloud {
-    animation-duration: 30s;
-    width: 100px;
-  }
-
-  .cloud-1 {
-    left: -100px;
-    top: 10%;
-  }
-
-  .cloud-2 {
-    left: -120px;
-    top: 20%;
-  }
-
-  .cloud-3 {
-    left: -80px;
-    top: 10%;
-  }
-
-  .swan {
-    animation-duration: 40s;
-    width: 30px;
-  }
-
-  .swan-2 {
-    animation-delay: 5s;
-    left: 18%;
-  }
-
-  .logo {
-    max-width: 200px;
-    width: 90%;
   }
 }

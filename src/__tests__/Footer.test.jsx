@@ -14,8 +14,8 @@ describe('Footer appears on all pages', () => {
 
       // Footer contact checks scoped to footer
       expect(within(footer).getByText(/14072 old ridge road/i)).toBeInTheDocument();
-      expect(within(footer).getByRole('link', { name: /\(804\) 555-1234/i })).toBeInTheDocument();
-      expect(within(footer).getByRole('link', { name: /info@coatesvillefarm.com/i })).toBeInTheDocument();
+      expect(within(footer).getByRole('link', { name: /\(804\) 449-6016/i })).toBeInTheDocument();
+      expect(within(footer).getByRole('link', { name: /coatesvillefarm@gmail.com/i })).toBeInTheDocument();
 
       // Copyright check (also scoped)
       expect(within(footer).getByText(/© 2025 coatesville farm/i)).toBeInTheDocument();

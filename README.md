@@ -1,31 +1,25 @@
 # Coatesville Farm Website
 
-This is the static React site for **Coatesville Farm**, hosted on AWS S3 and designed to adapt its visual branding based on the current season and time of day. The site showcases farm information, crops, contact details, and a seasonal homepage.
+A whimsical, seasonal React site for Coatesville Farm, hosted on AWS S3. The site adapts its branding based on the current season and time of day, includes interactive geese with sound effects, and supports mobile responsiveness and automated testing.
 
 ---
 
 ## 🗂 Project Structure
 
 ```
-public/
-  assets/
-    img/
-      logo-spring.png
-      logo-spring-night.png
-      logo-summer.png
-      logo-summer-night.png
-      logo-autumn.png
-      logo-autumn-night.png
-      logo-winter.png
-      logo-winter-night.png
-    silo-rainbow.png        # Static image for About page
-
-src/
-  App.jsx                   # Main application entry
-  utils/
-    logoUtils.js           # Logo logic based on season/time
-  __tests__/
-    *.test.jsx             # Component tests
+.
+├── public/
+│   ├── assets/
+│   │   ├── img/             # Logos, clouds, geese, etc.
+│   │   └── audio/           # Bird and goose audio files
+├── src/
+│   ├── components/          # Header, Footer, SeasonalLogo
+│   ├── pages/               # Home, About, Contact, Crops
+│   ├── styles/              # CSS modules for layout/sections
+│   ├── utils/               # logoUtils for seasonal logic
+│   ├── __tests__/           # Unit tests for each component/page
+├── dist/                    # Vite build output
+├── iam/                     # S3 bucket policy JSON
 ```
 
 ---
@@ -63,6 +57,35 @@ https://coatesvillefarm.com/?preview=2025-12-24T19:00:00
 - Implemented via `getPreviewDate()` in `logoUtils.js`
 
 ---
+🪿 Interactive Geese
+
+There are three floating Canada Geese on the homepage:
+	•	Goose 1 & Goose 2 honk on click
+	•	Goose 3 (a gosling) chirps on click
+
+All geese are absolutely positioned and animated to float gently across the pond without overlapping.
+
+⸻
+
+🐦 Animated Bird
+
+A cardinal flies and flaps across the screen continuously:
+	•	Loops every 60 seconds
+	•	Flaps using frame-by-frame animation
+	•	Clicking the bird triggers a chirp (northern-cardinal-chirp.m4a) and displays a "chirp" speech bubble
+
+⸻
+
+🧪 Testing
+
+Unit tests are provided for:
+	•	Seasonal logo behavior
+	•	Page rendering (Home, About, Crops, Contact)
+	•	Footer and navigation
+	•	Logo fallbacks and time simulation
+
+Running tests:
+---
 
 ## ✅ Tests and CI/CD Pipeline
 
@@ -97,18 +120,23 @@ npm run build
 
 ## 🗺 Address & Contact
 
-The footer includes:
-
-- 📍 [14072 Old Ridge Road, Beaverdam, VA](https://maps.app.goo.gl/7daPheXtBUPiJES87)
-- 📞 (804) 555-1234
-- ✉️ [info@coatesvillefarm.com](mailto:info@coatesvillefarm.com)
+Footer and Contact page display:
+	•	📍 14072 Old Ridge Road, Beaverdam, VA
+	•	📞 (804) 555-1234
+	•	✉️ info@coatesvillefarm.com
 
 ---
 
 ## 🛠 Future Enhancements
 
-- CMS or Markdown-based content editing
-- Contact form with spam prevention
-- Improved mobile styling and accessibility
+	•	Sound on/off toggle for geese and bird audio
+	•	Accessibility improvements and keyboard nav
+	•	CMS/Markdown integration for crop and about pages
+	•	Contact form with spam protection
+	•	Offline support (via service workers)
+
+⸻
+
+Made with ❤️, honks, and flaps at Coatesville Farm.
 
 ---

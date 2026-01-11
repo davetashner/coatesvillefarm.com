@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import App from '../App';
 
@@ -17,8 +16,9 @@ describe('Footer appears on all pages', () => {
       expect(within(footer).getByRole('link', { name: /\(804\) 449-6016/i })).toBeInTheDocument();
       expect(within(footer).getByRole('link', { name: /coatesvillefarm@gmail.com/i })).toBeInTheDocument();
 
-      // Copyright check (also scoped)
-      expect(within(footer).getByText(/© 2025 coatesville farm/i)).toBeInTheDocument();
+      // Copyright check with dynamic year
+      const currentYear = new Date().getFullYear();
+      expect(within(footer).getByText(new RegExp(`© ${currentYear} coatesville farm`, 'i'))).toBeInTheDocument();
     });
   });
 });

@@ -11,6 +11,12 @@
   --color-link: #1565c0;          /* Link blue */
   --color-link-hover: #0d47a1;
   --color-error: #d32f2f;         /* Error red */
+  --color-error-dark: #c62828;    /* Error text */
+  --color-error-bg: #ffebee;      /* Error background */
+  --color-error-border: #ef9a9a;  /* Error border */
+  --color-success-bg: #e8f5e9;    /* Success background */
+  --color-success-border: #a5d6a7; /* Success border */
+  --color-disabled-bg: #eeeeee;   /* Disabled state background */
   --color-input-bg: #f9fff8;      /* Form input background */
   --color-navbar-bg: #336816;     /* Navbar background */
 

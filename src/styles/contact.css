@@ -126,7 +126,7 @@
 /* Disabled inputs */
 .contact-form input:disabled,
 .contact-form textarea:disabled {
-  background-color: #eee;
+  background-color: var(--color-disabled-bg);
   cursor: not-allowed;
 }
 
@@ -142,15 +142,15 @@
 }
 
 .toast-success {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-  border: 1px solid #a5d6a7;
+  background-color: var(--color-success-bg);
+  color: var(--color-primary);
+  border: 1px solid var(--color-success-border);
 }
 
 .toast-error {
-  background-color: #ffebee;
-  color: #c62828;
-  border: 1px solid #ef9a9a;
+  background-color: var(--color-error-bg);
+  color: var(--color-error-dark);
+  border: 1px solid var(--color-error-border);
 }
 
 @keyframes slideIn {

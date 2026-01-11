@@ -5,32 +5,6 @@
 @import './styles/home.css';
 @import './styles/contact.css';
 
-body {
-  background-color: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  margin: 0;
-  padding: 0;
-}
-
-body, html, .main-content, .app-container {
-  height: 100%;
-  margin: 0;
-  overflow-x: hidden;
-  padding: 0;
-  width: 100%;
-}
-
-h1, h2, h3 {
-  font-family: var(--font-heading);
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .navbar {
   align-items: center;
   background-color: var(--color-navbar-bg);
@@ -99,15 +73,6 @@ h1, h2, h3 {
   font-weight: bold;
 }
 
-.main-content {
-  display: flex;
-  flex: unset;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 0;
-  margin: 0;
-}
-
 .about-image {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -137,17 +102,6 @@ h1, h2, h3 {
   width: 100%;
 }
 
-.page {
-  margin: 0 auto;
-  max-width: 700px;
-  padding: 2rem;
-}
-
-.page-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
 .crop-list {
   list-style-type: disc;
   padding-left: 1.25rem;
@@ -156,24 +110,6 @@ h1, h2, h3 {
 .email-link {
   color: var(--color-link);
   text-decoration: underline;
-}
-
-.submit-button {
-  align-self: flex-start;
-  background-color: var(--color-primary);
-  border: none;
-  border-radius: 2rem;
-  color: var(--color-surface);
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0.75rem 1.5rem;
-  transition: background-color 0.2s ease;
-}
-
-.submit-button:hover {
-  background-color: var(--color-primary-dark);
 }
 
 @media (max-width: 600px) {
@@ -187,16 +123,6 @@ h1, h2, h3 {
   .menu-toggle {
     display: block;
   }
-
-  /* .navbar-logo {
-    border-width: 1px;
-    height: auto;
-    max-height: 80px;
-    max-width: 80px;
-    object-fit: contain;
-    padding: 2px;
-    width: auto;
-  } */
 
   .navbar-logo {
     max-width: 48px;

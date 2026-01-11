@@ -32,6 +32,40 @@ npm test         # Run tests
 npm run lint     # Run ESLint
 ```
 
+## Git branching + PR standards (BEADS)
+
+### Branch naming
+- All branches must align to the BEADS *Epic name*.
+- Use this format:
+  - `epic/<EPIC_KEY>-<epic-name-kebab>/<story-key>-<short-desc-kebab>`
+- Examples:
+  - `epic/BEADS-1234-config-as-data/BEADS-2345-add-validation`
+  - `epic/BEADS-9876-ack-governance/BEADS-9881-fix-reconcile-loop`
+
+Notes:
+- `<epic-name-kebab>` should closely match the epic name (lowercase, hyphens).
+- `<short-desc-kebab>` should be short (3–8 words).
+
+### Pull request title
+- PR titles must include the BEADS epic ticket in brackets at the beginning.
+- Format:
+  - `[<EPIC_KEY>] <PR title>`
+- Examples:
+  - `[BEADS-1234] Add schema validation for config bundles`
+  - `[BEADS-9876] Enforce namespace network policy defaults`
+
+### Pull request description
+- PR descriptions must include the BEADS story ticket number.
+- Include it near the top using this exact label for consistency:
+  - `Story: <STORY_KEY>`
+- Example:
+  - `Story: BEADS-2345`
+
+### If information is missing
+If the epic key, epic name, or story key is not provided:
+1. Ask for the missing key(s) before suggesting a branch name or PR text.
+2. Do not guess ticket numbers.
+
 ## Issue Tracking
 
 This project uses **Beads** for issue tracking. Check `.beads/` for configuration.

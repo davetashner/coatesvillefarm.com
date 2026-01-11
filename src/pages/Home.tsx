@@ -85,8 +85,13 @@ export default function Home() {
   );
 }
 
+/**
+ * Props for the AnimatedBird component.
+ */
 interface AnimatedBirdProps {
+  /** Callback fired when the bird is clicked or activated via keyboard */
   onClick: () => void;
+  /** Whether the bird has recently chirped (shows speech bubble) */
   chirped: boolean;
 }
 

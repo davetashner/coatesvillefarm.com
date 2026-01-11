@@ -106,8 +106,35 @@ th, td {
   text-align: left;
 }
 
-/* Accessibility */
+/* Accessibility - Focus Indicators */
 :focus {
-  outline: 2px dashed var(--color-accent);
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* High contrast focus for buttons and interactive elements */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-primary-dark);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.3);
+}
+
+/* Focus styles for nav links (white text on dark bg) */
+.nav-link:focus-visible {
+  outline: 2px solid white;
   outline-offset: 4px;
+}
+
+/* Focus styles for form inputs */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
 }

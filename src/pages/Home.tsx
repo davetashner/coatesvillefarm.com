@@ -1,29 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import '../styles/home.css';
-import SeasonalLogo from '../components/SeasonalLogo.jsx';
+import SeasonalLogo from '../components/SeasonalLogo';
+import { playAudio } from '../utils/audioUtils';
+import { ANIMATION_TIMING, BIRD_FRAMES } from '../constants';
 
 export default function Home() {
   const [chirped, setChirped] = useState(false);
-  const gooseAudioRef = useRef(null);
-  const goslingAudioRef = useRef(null);
+  const gooseAudioRef = useRef<HTMLAudioElement>(null);
+  const goslingAudioRef = useRef<HTMLAudioElement>(null);
 
   const handleGooseClick = () => {
-    if (gooseAudioRef.current) {
-      gooseAudioRef.current.currentTime = 0;
-      gooseAudioRef.current.play();
-    }
+    playAudio(gooseAudioRef);
   };
 
   const handleGoslingClick = () => {
-    if (goslingAudioRef.current) {
-      goslingAudioRef.current.currentTime = 0;
-      goslingAudioRef.current.play();
+    playAudio(goslingAudioRef);
+  };
+
+  const handleGooseKeyDown = (e: KeyboardEvent, isGosling = false) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      isGosling ? handleGoslingClick() : handleGooseClick();
     }
   };
 
   const handleBirdClick = () => {
     setChirped(true);
-    setTimeout(() => setChirped(false), 1000); // hide "chirp" after 1 sec
+    setTimeout(() => setChirped(false), ANIMATION_TIMING.CHIRP_BUBBLE);
   };
 
   return (
@@ -36,39 +39,45 @@ export default function Home() {
         />
 
         <div className="hero-overlay">
-        <SeasonalLogo />
+          <SeasonalLogo />
         </div>
 
-        {/* Animated visuals */}
         <AnimatedBird onClick={handleBirdClick} chirped={chirped} />
-        <img src="/assets/img/cloud-1.png" alt="Cloud 1" className="cloud cloud-1" />
-        <img src="/assets/img/cloud-2.png" alt="Cloud 2" className="cloud cloud-2" />
-        <img src="/assets/img/cloud-3.png" alt="Cloud 3" className="cloud cloud-3" />
+        <img src="/assets/img/cloud-1.png" alt="" className="cloud cloud-1" aria-hidden="true" />
+        <img src="/assets/img/cloud-2.png" alt="" className="cloud cloud-2" aria-hidden="true" />
+        <img src="/assets/img/cloud-3.png" alt="" className="cloud cloud-3" aria-hidden="true" />
 
-        {/* Goose Images with Sound */}
         <img
           src="/assets/img/canada-goose-1.png"
-          alt="Goose"
+          alt="Goose - click to hear honk"
           className="goose"
+          role="button"
+          tabIndex={0}
           onClick={handleGooseClick}
+          onKeyDown={(e) => handleGooseKeyDown(e)}
           onTouchStart={handleGooseClick}
         />
         <img
           src="/assets/img/canada-goose-2.png"
-          alt="Goose 2"
+          alt="Goose - click to hear honk"
           className="goose goose-2"
+          role="button"
+          tabIndex={0}
           onClick={handleGooseClick}
+          onKeyDown={(e) => handleGooseKeyDown(e)}
           onTouchStart={handleGooseClick}
         />
         <img
           src="/assets/img/canada-goose-3.png"
-          alt="Goose 3"
+          alt="Gosling - click to hear chirp"
           className="goose goose-3"
+          role="button"
+          tabIndex={0}
           onClick={handleGoslingClick}
+          onKeyDown={(e) => handleGooseKeyDown(e, true)}
           onTouchStart={handleGoslingClick}
         />
 
-        {/* Audio elements */}
         <audio ref={gooseAudioRef} src="/assets/audio/canada-goose-1.m4a" preload="auto" />
         <audio ref={goslingAudioRef} src="/assets/audio/canada-gosling-1.m4a" preload="auto" />
       </section>
@@ -76,26 +85,24 @@ export default function Home() {
   );
 }
 
-function AnimatedBird({ onClick, chirped }) {
+interface AnimatedBirdProps {
+  onClick: () => void;
+  chirped: boolean;
+}
+
+function AnimatedBird({ onClick, chirped }: AnimatedBirdProps) {
   const [frameIndex, setFrameIndex] = useState(0);
   const [positionX, setPositionX] = useState(100);
-  const chirpAudio = useRef(null);
-
-  const birdFrames = [
-    "/assets/img/northern-cardinal-01.png",
-    "/assets/img/northern-cardinal-02.png",
-    "/assets/img/northern-cardinal-03.png",
-    "/assets/img/northern-cardinal-04.png"
-  ];
+  const chirpAudio = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const flapInterval = setInterval(() => {
-      setFrameIndex((prev) => (prev + 1) % birdFrames.length);
-    }, 120);
+      setFrameIndex((prev) => (prev + 1) % BIRD_FRAMES.length);
+    }, ANIMATION_TIMING.BIRD_FLAP);
 
     const flyInterval = setInterval(() => {
       setPositionX((prev) => (prev < window.innerWidth + 100 ? prev + 2 : -100));
-    }, 16);
+    }, ANIMATION_TIMING.BIRD_FLY);
 
     return () => {
       clearInterval(flapInterval);
@@ -104,28 +111,36 @@ function AnimatedBird({ onClick, chirped }) {
   }, []);
 
   const handleInteraction = () => {
-    if (chirpAudio.current) {
-      chirpAudio.current.currentTime = 0;
-      chirpAudio.current.play();
-    }
+    playAudio(chirpAudio);
     onClick();
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleInteraction();
+    }
   };
 
   return (
     <>
       <audio ref={chirpAudio} src="/assets/audio/northern-cardinal-chirp.m4a" preload="auto" />
       <img
-        src={birdFrames[frameIndex]}
-        alt="Flying bird"
+        src={BIRD_FRAMES[frameIndex]}
+        alt="Flying cardinal - click to hear chirp"
         className="animated-bird"
         style={{ left: `${positionX}px` }}
+        role="button"
+        tabIndex={0}
         onClick={handleInteraction}
+        onKeyDown={handleKeyDown}
         onTouchStart={handleInteraction}
       />
       {chirped && (
         <div
           className="chirp-bubble"
           style={{ left: `${positionX + 40}px` }}
+          aria-live="polite"
         >
           chirp
         </div>

@@ -1,0 +1,19 @@
+{
+  "name": "coatesville-contact-lambda",
+  "version": "1.0.0",
+  "description": "Contact form Lambda function for Coatesville Farm",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "npm run build && sam deploy",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.400.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

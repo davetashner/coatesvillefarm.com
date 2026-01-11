@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Coatesville Farm Contact Form API
+
+Globals:
+  Function:
+    Timeout: 10
+    Runtime: nodejs20.x
+    MemorySize: 128
+
+Resources:
+  ContactFormFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: coatesville-contact-form
+      Handler: index.handler
+      CodeUri: dist/
+      Description: Handles contact form submissions and sends emails via SES
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: '*'
+              Condition:
+                StringEquals:
+                  ses:FromAddress: coatesvillefarm@gmail.com
+      Events:
+        ContactFormApi:
+          Type: Api
+          Properties:
+            Path: /contact
+            Method: POST
+            RestApiId: !Ref ContactFormApi
+        ContactFormOptions:
+          Type: Api
+          Properties:
+            Path: /contact
+            Method: OPTIONS
+            RestApiId: !Ref ContactFormApi
+
+  ContactFormApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: coatesville-contact-api
+      StageName: prod
+      Cors:
+        AllowMethods: "'POST, OPTIONS'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'https://coatesvillefarm.com'"
+      EndpointConfiguration:
+        Type: REGIONAL
+
+Outputs:
+  ApiEndpoint:
+    Description: API Gateway endpoint URL
+    Value: !Sub 'https://${ContactFormApi}.execute-api.${AWS::Region}.amazonaws.com/prod/contact'
+  FunctionArn:
+    Description: Lambda Function ARN
+    Value: !GetAtt ContactFormFunction.Arn

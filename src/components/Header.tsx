@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import SeasonalLogo from './SeasonalLogo';
-import "../styles/layout.css"; // Or replace with a specific header.css if preferred
+import '../styles/layout.css';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,15 +13,17 @@ export default function Header() {
       setIsMobile(window.innerWidth <= 600);
       if (window.innerWidth > 600) setMenuOpen(false);
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   const navLinksClass = isMobile
-    ? `navbar-links ${menuOpen ? "mobile-visible" : "mobile-hidden"}`
-    : "navbar-links";
+    ? `navbar-links ${menuOpen ? 'mobile-visible' : 'mobile-hidden'}`
+    : 'navbar-links';
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header>
@@ -43,28 +45,32 @@ export default function Header() {
         <div className={navLinksClass}>
           <Link
             to="/"
-            className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
+            className={`nav-link ${isActive('/') ? 'active' : ''}`}
+            aria-current={isActive('/') ? 'page' : undefined}
             onClick={() => setMenuOpen(false)}
           >
             Home
           </Link>
           <Link
             to="/about"
-            className={`nav-link ${location.pathname === "/about" ? "active" : ""}`}
+            className={`nav-link ${isActive('/about') ? 'active' : ''}`}
+            aria-current={isActive('/about') ? 'page' : undefined}
             onClick={() => setMenuOpen(false)}
           >
             About
           </Link>
           <Link
             to="/crops"
-            className={`nav-link ${location.pathname === "/crops" ? "active" : ""}`}
+            className={`nav-link ${isActive('/crops') ? 'active' : ''}`}
+            aria-current={isActive('/crops') ? 'page' : undefined}
             onClick={() => setMenuOpen(false)}
           >
             Crops
           </Link>
           <Link
             to="/contact"
-            className={`nav-link ${location.pathname === "/contact" ? "active" : ""}`}
+            className={`nav-link ${isActive('/contact') ? 'active' : ''}`}
+            aria-current={isActive('/contact') ? 'page' : undefined}
             onClick={() => setMenuOpen(false)}
           >
             Contact

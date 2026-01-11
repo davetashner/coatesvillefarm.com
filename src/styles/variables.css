@@ -4,14 +4,27 @@
   --color-primary-dark: #1b5e20;
   --color-accent: #a3d9a5;        /* Light green accent */
   --color-background: #f1fce9;    /* Light green background */
+  --color-bg: #f1fce9;            /* Alias for background */
   --color-surface: #ffffff;       /* White surfaces */
   --color-text: #1b3c1b;          /* Deep green text */
+  --color-muted: #4e6b4e;         /* Muted/secondary text */
   --color-link: #1565c0;          /* Link blue */
   --color-link-hover: #0d47a1;
+  --color-error: #d32f2f;         /* Error red */
+  --color-input-bg: #f9fff8;      /* Form input background */
+  --color-navbar-bg: #336816;     /* Navbar background */
 
   /* Typography */
   --font-body: 'Lora', serif;
   --font-heading: 'Pacifico', cursive;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
 
   /* Spacing */
   --space-xs: 0.5rem;

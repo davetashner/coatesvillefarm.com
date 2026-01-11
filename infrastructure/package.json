@@ -1,0 +1,24 @@
+{
+  "name": "coatesville-farm-infrastructure",
+  "version": "1.0.0",
+  "description": "CDK infrastructure for Coatesville Farm contact form backend",
+  "main": "lib/contact-form-stack.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "synth": "cdk synth",
+    "deploy": "npm run build:lambda && cdk deploy",
+    "deploy:test": "npm run build:lambda && cdk deploy --context recipientEmail=davetashner@gmail.com",
+    "diff": "cdk diff",
+    "destroy": "cdk destroy",
+    "build:lambda": "cd ../lambda && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "aws-cdk-lib": "^2.170.0",
+    "constructs": "^10.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  }
+}

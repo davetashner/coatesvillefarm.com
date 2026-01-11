@@ -1,5 +1,3 @@
-import { parseISO } from 'date-fns';
-
 export type Season = 'spring' | 'summer' | 'autumn' | 'winter';
 
 /**
@@ -23,31 +21,4 @@ export const getSeason = (date: Date = new Date()): Season => {
 export const isNightTime = (date: Date = new Date()): boolean => {
   const hour = date.getHours();
   return hour < 6 || hour >= 18;
-};
-
-/**
- * Gets the preview date from URL query parameter.
- * @returns The parsed preview date or null if not provided/invalid
- */
-export const getPreviewDate = (): Date | null => {
-  const params = new URLSearchParams(window.location.search);
-  const preview = params.get('preview');
-  if (!preview) return null;
-  try {
-    return parseISO(preview); // Must be an ISO string like 2025-10-15T21:00
-  } catch {
-    return null;
-  }
-};
-
-/**
- * Gets the path to the appropriate logo based on season and time of day.
- * @returns The path to the logo image
- */
-export const getLogoPath = (): string => {
-  const previewDate = getPreviewDate();
-  const date = previewDate || new Date();
-  const season = getSeason(date);
-  const night = isNightTime(date);
-  return `/assets/img/logo-${season}${night ? '-night' : ''}.png`;
 };

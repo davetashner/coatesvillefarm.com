@@ -6,9 +6,9 @@
 @import './styles/contact.css';
 
 body {
-  background-color: #f1fce9;
-  color: #1b3c1b;
-  font-family: 'Lora', serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
   margin: 0;
   padding: 0;
 }
@@ -22,46 +22,7 @@ body, html, .main-content, .app-container {
 }
 
 h1, h2, h3 {
-  font-family: 'Pacifico', cursive;
-}
-
-.cloud {
-  animation: floatCloud 60s linear infinite;
-  opacity: 0.8;
-  position: absolute;
-  top: 10%;
-  width: 200px;
-  z-index: 2;
-}
-
-.cloud-1 {
-  animation-delay: 0s;
-  left: -250px;
-  opacity: 0.90;
-  top: 15%;
-}
-
-.cloud-2 {
-  animation-delay: 10s;
-  left: -300px;
-  opacity: 0.95;
-  top: 30%;
-}
-
-.cloud-3 {
-  animation-delay: 18s;
-  left: -200px;
-  opacity: 0.95;
-  top: 15%;
-}
-
-@keyframes floatCloud {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(100vw + 250px));
-  }
+  font-family: var(--font-heading);
 }
 
 .app-container {
@@ -72,7 +33,7 @@ h1, h2, h3 {
 
 .navbar {
   align-items: center;
-  background-color: #336816;
+  background-color: var(--color-navbar-bg);
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
@@ -163,8 +124,8 @@ h1, h2, h3 {
 }
 
 .logo {
-  background-color: white;
-  border: 1px solid #a3d9a5;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
   border-radius: 25%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: block;
@@ -193,18 +154,18 @@ h1, h2, h3 {
 }
 
 .email-link {
-  color: #1565c0;
+  color: var(--color-link);
   text-decoration: underline;
 }
 
 .submit-button {
   align-self: flex-start;
-  background-color: #2e7d32;
+  background-color: var(--color-primary);
   border: none;
   border-radius: 2rem;
-  color: white;
+  color: var(--color-surface);
   cursor: pointer;
-  font-family: 'Lora', serif;
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: bold;
   padding: 0.75rem 1.5rem;
@@ -212,7 +173,7 @@ h1, h2, h3 {
 }
 
 .submit-button:hover {
-  background-color: #1b5e20;
+  background-color: var(--color-primary-dark);
 }
 
 @media (max-width: 600px) {

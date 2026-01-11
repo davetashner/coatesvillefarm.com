@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SeasonalLogo from './SeasonalLogo';
 import '../styles/layout.css';
@@ -7,6 +7,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   const location = useLocation();
+  const navRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,7 +19,45 @@ export default function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  // Focus trap for mobile menu
+  useEffect(() => {
+    if (!menuOpen || !isMobile) return;
+
+    const navElement = navRef.current;
+    if (!navElement) return;
+
+    const focusableElements = navElement.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled])'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    // Focus first nav link when menu opens
+    firstElement?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement?.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen, isMobile]);
+
+  const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), []);
 
   const navLinksClass = isMobile
     ? `navbar-links ${menuOpen ? 'mobile-visible' : 'mobile-hidden'}`
@@ -34,15 +74,17 @@ export default function Header() {
 
         {isMobile && (
           <button
+            ref={menuButtonRef}
             className="menu-toggle"
             onClick={toggleMenu}
             aria-label="Toggle navigation"
+            aria-expanded={menuOpen}
           >
             ☰
           </button>
         )}
 
-        <div className={navLinksClass}>
+        <div ref={navRef} className={navLinksClass}>
           <Link
             to="/"
             className={`nav-link ${isActive('/') ? 'active' : ''}`}

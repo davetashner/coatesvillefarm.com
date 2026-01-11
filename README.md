@@ -4,7 +4,17 @@ A whimsical, seasonal React site for Coatesville Farm, hosted on AWS S3. The sit
 
 ---
 
-## 🗂 Project Structure
+## Tech Stack
+
+- **React 18** + **TypeScript** - Type-safe component development
+- **Vite** - Fast build tooling and dev server
+- **Jest** + **Testing Library** - Unit and component testing
+- **CSS Variables** - Centralized theming in `src/styles/variables.css`
+- **AWS S3 + CloudFront** - Static site hosting with CDN
+
+---
+
+## Project Structure
 
 ```
 .
@@ -13,18 +23,33 @@ A whimsical, seasonal React site for Coatesville Farm, hosted on AWS S3. The sit
 │   │   ├── img/             # Logos, clouds, geese, etc.
 │   │   └── audio/           # Bird and goose audio files
 ├── src/
-│   ├── components/          # Header, Footer, SeasonalLogo
+│   ├── components/          # Header, Footer, SeasonalLogo, ErrorBoundary
 │   ├── pages/               # Home, About, Contact, Crops
-│   ├── styles/              # CSS modules for layout/sections
-│   ├── utils/               # logoUtils for seasonal logic
+│   ├── styles/              # CSS modules (variables, navbar, home, etc.)
+│   ├── utils/               # logoUtils, audioUtils
+│   ├── constants/           # Animation timing, form config
+│   ├── config/              # App configuration
 │   ├── __tests__/           # Unit tests for each component/page
 ├── dist/                    # Vite build output
-├── iam/                     # S3 bucket policy JSON
+├── lambda/                  # Contact form backend (AWS Lambda)
+├── .beads/                  # Issue tracking configuration
 ```
 
 ---
 
-## 🌱 Seasonal Logo Logic
+## Development
+
+```bash
+npm install          # Install dependencies
+npm run dev          # Start dev server (localhost:5173)
+npm run build        # Build for production
+npm test             # Run tests
+npm run lint         # Run ESLint
+```
+
+---
+
+## Seasonal Logo Logic
 
 The homepage dynamically displays a different logo depending on the current season and time of day:
 
@@ -44,7 +69,7 @@ If the time is **before 6:00 AM** or **after 6:00 PM**, the corresponding `-nigh
 
 ---
 
-## 🔍 Preview Query Parameter
+## Preview Query Parameter
 
 To simulate how the site looks at a different time, use the `preview` query parameter in the URL:
 
@@ -54,89 +79,91 @@ https://coatesvillefarm.com/?preview=2025-12-24T19:00:00
 
 - Accepts ISO 8601 format (`YYYY-MM-DDTHH:mm:ss`)
 - Used for previewing seasonal and night logos in production
-- Implemented via `getPreviewDate()` in `logoUtils.js`
+- Implemented via `getPreviewDate()` in `src/utils/logoUtils.ts`
 
 ---
-🪿 Interactive Geese
 
-There are three floating Canada Geese on the homepage:
-	•	Goose 1 & Goose 2 honk on click
-	•	Goose 3 (a gosling) chirps on click
+## Interactive Elements
 
-All geese are absolutely positioned and animated to float gently across the pond without overlapping.
+### Geese
+Three floating Canada Geese on the homepage:
+- Goose 1 & Goose 2 honk on click
+- Goose 3 (a gosling) chirps on click
+- All geese are keyboard accessible (Enter/Space to activate)
 
-⸻
-
-🐦 Animated Bird
-
+### Animated Bird
 A cardinal flies and flaps across the screen continuously:
-	•	Loops every 60 seconds
-	•	Flaps using frame-by-frame animation
-	•	Clicking the bird triggers a chirp (northern-cardinal-chirp.m4a) and displays a "chirp" speech bubble
+- Loops every 60 seconds
+- Flaps using frame-by-frame animation
+- Clicking/activating the bird triggers a chirp and displays a speech bubble
 
-⸻
-
-🧪 Testing
-
-Unit tests are provided for:
-	•	Seasonal logo behavior
-	•	Page rendering (Home, About, Crops, Contact)
-	•	Footer and navigation
-	•	Logo fallbacks and time simulation
-
-Running tests:
 ---
 
-## ✅ Tests and CI/CD Pipeline
+## Testing
 
-### 🧪 Tests
-
-- Located in `src/__tests__`
-- Implemented with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-- Validates:
-  - Correct seasonal logo rendering
-  - Presence of navigation and footer
-  - Content routes (`Home`, `About`, `Crops`, `Contact`)
-
-Run locally:
+Unit tests cover:
+- Seasonal logo behavior (`logoUtils.ts`)
+- Audio utilities (`audioUtils.ts`)
+- Page rendering (Home, About, Crops, Contact)
+- Footer and navigation
+- Component props and interactions
 
 ```bash
-npm test
+npm test                    # Run all tests
+npm test -- --coverage      # Run with coverage report
 ```
 
-### 🚀 Build & Deployment
+---
+
+## Deployment
 
 - Built with [Vite](https://vitejs.dev/)
-- Static output deployed to AWS S3
-- GitHub Actions or manual workflow can publish site after:
+- Static output deployed to AWS S3 via GitHub Actions
+- CloudFront provides CDN and HTTPS
 
 ```bash
-npm run build
+npm run build    # Output appears in dist/
 ```
 
-> Output appears in the `dist/` folder, ready for upload to S3
+---
+
+## Issue Tracking
+
+This project uses [Beads](https://github.com/steveyegge/beads) for AI-native issue tracking. Issues live in `.beads/issues.jsonl` and sync with git.
+
+### Basic Commands
+
+```bash
+bd list                           # View open issues
+bd show <id>                      # View issue details
+bd create "Add dark mode toggle"  # Create new issue
+bd update <id> --status closed    # Close an issue
+```
+
+### Using with AI Agents
+
+Beads is designed to work seamlessly with AI coding agents like Claude Code. When working with an agent:
+
+1. **Check the backlog first** - Ask the agent to run `bd list` to see current priorities
+2. **Add issues conversationally** - Tell the agent what you need and ask it to create a Beads issue
+3. **Track progress** - The agent can update issue status as work completes
+4. **Review before committing** - Issues sync with git, so changes are tracked in version control
+
+Example prompts:
+- "Add a task to the backlog for implementing dark mode"
+- "What's next in the Beads backlog?"
+- "Mark issue 751.8 as closed"
+- "Create an epic for the authentication feature with subtasks"
 
 ---
 
-## 🗺 Address & Contact
+## Address & Contact
 
 Footer and Contact page display:
-	•	📍 14072 Old Ridge Road, Beaverdam, VA
-	•	📞 (804) 555-1234
-	•	✉️ info@coatesvillefarm.com
+- 📍 14072 Old Ridge Road, Beaverdam, VA
+- 📞 (804) 555-1234
+- ✉️ info@coatesvillefarm.com
 
 ---
 
-## 🛠 Future Enhancements
-
-	•	Sound on/off toggle for geese and bird audio
-	•	Accessibility improvements and keyboard nav
-	•	CMS/Markdown integration for crop and about pages
-	•	Contact form with spam protection
-	•	Offline support (via service workers)
-
-⸻
-
-Made with ❤️, honks, and flaps at Coatesville Farm.
-
----
+Made with honks and flaps at Coatesville Farm.

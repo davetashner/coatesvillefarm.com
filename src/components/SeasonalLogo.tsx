@@ -1,8 +1,14 @@
 import { getSeason, isNightTime, type Season } from '../utils/logoUtils';
 
+/**
+ * Props for the SeasonalLogo component.
+ */
 interface SeasonalLogoProps {
+  /** Additional CSS class names to apply to the logo image */
   className?: string;
+  /** Override the auto-detected season (spring, summer, autumn, winter) */
   season?: Season;
+  /** Override the auto-detected night mode (true = night logo variant) */
   night?: boolean;
 }
 

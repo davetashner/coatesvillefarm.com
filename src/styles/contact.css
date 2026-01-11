@@ -60,9 +60,10 @@
   transition: border-color 0.2s ease;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
   outline: none;
 }
 

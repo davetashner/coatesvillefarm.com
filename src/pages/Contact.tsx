@@ -3,17 +3,29 @@ import '../styles/contact.css';
 import { ANIMATION_TIMING, FORM_CONFIG } from '../constants';
 import { CONFIG } from '@/config';
 
+/**
+ * Contact form field values.
+ */
 interface FormData {
+  /** User's name */
   name: string;
+  /** User's email address */
   email: string;
+  /** Message content */
   message: string;
+  /** Honeypot field for spam prevention (should remain empty) */
   honey: string;
 }
 
+/**
+ * Validation error messages for form fields.
+ */
 interface FormErrors {
+  /** Email validation error message */
   email: string;
 }
 
+/** Form submission state */
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 
 const Contact = () => {

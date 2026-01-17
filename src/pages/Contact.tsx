@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { useState, useEffect, useRef, useCallback, ChangeEvent, FormEvent } from 'react';
 import '../styles/contact.css';
 import { ANIMATION_TIMING, FORM_CONFIG } from '../constants';
 import { CONFIG } from '@/config';
@@ -34,10 +34,72 @@ const Contact = () => {
   const [errors, setErrors] = useState<FormErrors>({ email: '' });
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
+  const recaptchaReady = useRef(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowButton(true), ANIMATION_TIMING.SUBMIT_DELAY);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Load reCAPTCHA v3 script if site key is configured
+  useEffect(() => {
+    if (!CONFIG.RECAPTCHA_SITE_KEY) {
+      // No site key configured, reCAPTCHA is optional
+      recaptchaReady.current = true;
+      return;
+    }
+
+    // Check if script is already loaded
+    if (window.grecaptcha) {
+      window.grecaptcha.ready(() => {
+        recaptchaReady.current = true;
+      });
+      return;
+    }
+
+    // Load the reCAPTCHA script
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${CONFIG.RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+
+    script.onload = () => {
+      window.grecaptcha.ready(() => {
+        recaptchaReady.current = true;
+      });
+    };
+
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup: remove script on unmount (optional, prevents duplicate loads)
+      const existingScript = document.querySelector(
+        `script[src^="https://www.google.com/recaptcha/api.js"]`
+      );
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
+
+  /**
+   * Get reCAPTCHA token for form submission
+   * Returns empty string if reCAPTCHA is not configured or not ready
+   */
+  const getRecaptchaToken = useCallback(async (): Promise<string> => {
+    if (!CONFIG.RECAPTCHA_SITE_KEY || !recaptchaReady.current || !window.grecaptcha) {
+      return '';
+    }
+
+    try {
+      const token = await window.grecaptcha.execute(CONFIG.RECAPTCHA_SITE_KEY, {
+        action: 'submit_contact',
+      });
+      return token;
+    } catch (error) {
+      console.error('Failed to get reCAPTCHA token:', error);
+      return '';
+    }
   }, []);
 
   // Auto-hide success/error message after 5 seconds
@@ -78,6 +140,9 @@ const Contact = () => {
     setSubmitMessage('');
 
     try {
+      // Get reCAPTCHA token (empty string if not configured)
+      const recaptchaToken = await getRecaptchaToken();
+
       const response = await fetch(CONFIG.CONTACT_API_URL, {
         method: 'POST',
         headers: {
@@ -88,6 +153,7 @@ const Contact = () => {
           email: form.email,
           message: form.message,
           honey: form.honey,
+          recaptchaToken,
         }),
       });
 

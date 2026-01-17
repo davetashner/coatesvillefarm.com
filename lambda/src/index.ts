@@ -3,6 +3,24 @@ import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 const ses = new SESClient({ region: 'us-east-1' });
 
+// Configuration from environment variables (set via CDK)
+const SENDER_EMAIL = process.env.SENDER_EMAIL || 'contact@coatesvillefarm.com';
+const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'coatesvillefarm@gmail.com';
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || '';
+const RECAPTCHA_SCORE_THRESHOLD = parseFloat(process.env.RECAPTCHA_SCORE_THRESHOLD || '0.5');
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://coatesvillefarm.com').split(',');
+
+/**
+ * Get the CORS origin to return based on the request's Origin header
+ * Returns the origin if it's in the allowed list, otherwise returns the first allowed origin
+ */
+function getCorsOrigin(requestOrigin: string | undefined): string {
+  if (requestOrigin && ALLOWED_ORIGINS.includes(requestOrigin)) {
+    return requestOrigin;
+  }
+  return ALLOWED_ORIGINS[0];
+}
+
 // In-memory rate limiting (resets when Lambda cold starts)
 // For production, consider using DynamoDB for persistent rate limiting
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -14,9 +32,68 @@ interface ContactFormData {
   email: string;
   message: string;
   honey?: string;
+  recaptchaToken?: string;
 }
 
-const FARM_EMAIL = 'coatesvillefarm@gmail.com';
+interface RecaptchaResponse {
+  success: boolean;
+  score: number;
+  action: string;
+  challenge_ts: string;
+  hostname: string;
+  'error-codes'?: string[];
+}
+
+/**
+ * Verify reCAPTCHA v3 token with Google's API
+ * Returns { valid: true, score } if verification passes
+ * Returns { valid: false, score: 0 } if verification fails
+ * If no secret key is configured, returns { valid: true, score: 1.0 } (graceful degradation)
+ */
+async function verifyRecaptcha(token: string): Promise<{ valid: boolean; score: number }> {
+  if (!RECAPTCHA_SECRET_KEY) {
+    console.warn('RECAPTCHA_SECRET_KEY not configured, skipping verification');
+    return { valid: true, score: 1.0 };
+  }
+
+  if (!token) {
+    console.error('No reCAPTCHA token provided');
+    return { valid: false, score: 0 };
+  }
+
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${encodeURIComponent(RECAPTCHA_SECRET_KEY)}&response=${encodeURIComponent(token)}`,
+    });
+
+    const data: RecaptchaResponse = await response.json();
+
+    if (!data.success) {
+      console.error('reCAPTCHA verification failed:', data['error-codes']);
+      return { valid: false, score: 0 };
+    }
+
+    // Verify the action matches what we expect (prevents token reuse from other pages)
+    if (data.action !== 'submit_contact') {
+      console.error('reCAPTCHA action mismatch. Expected: submit_contact, Got:', data.action);
+      return { valid: false, score: data.score };
+    }
+
+    // Check if score meets threshold
+    const isValid = data.score >= RECAPTCHA_SCORE_THRESHOLD;
+    if (!isValid) {
+      console.warn(`reCAPTCHA score ${data.score} below threshold ${RECAPTCHA_SCORE_THRESHOLD}`);
+    }
+
+    return { valid: isValid, score: data.score };
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    // On verification error, fail closed (reject the submission)
+    return { valid: false, score: 0 };
+  }
+}
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -130,9 +207,13 @@ function buildConfirmationEmail(data: ContactFormData): string {
 }
 
 export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
+  // Get the request origin and determine the appropriate CORS origin to return
+  const requestOrigin = event.headers?.origin || event.headers?.Origin;
+  const corsOrigin = getCorsOrigin(requestOrigin);
+
   const headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'https://coatesvillefarm.com',
+    'Access-Control-Allow-Origin': corsOrigin,
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
   };
@@ -167,12 +248,26 @@ export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayPr
     const data: ContactFormData = JSON.parse(event.body);
 
     // Honeypot check (spam bot detection)
+    // This catches simple bots that fill all fields
     if (data.honey) {
       // Silently accept but don't process (looks successful to bots)
       return {
         statusCode: 200,
         headers,
         body: JSON.stringify({ success: true }),
+      };
+    }
+
+    // reCAPTCHA verification (catches sophisticated bots)
+    const recaptchaResult = await verifyRecaptcha(data.recaptchaToken || '');
+    if (!recaptchaResult.valid) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          error: 'Verification failed. Please try again.',
+          code: 'RECAPTCHA_FAILED',
+        }),
       };
     }
 
@@ -205,8 +300,8 @@ export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
     // Send notification email to farm
     await ses.send(new SendEmailCommand({
-      Source: FARM_EMAIL,
-      Destination: { ToAddresses: [FARM_EMAIL] },
+      Source: SENDER_EMAIL,
+      Destination: { ToAddresses: [RECIPIENT_EMAIL] },
       ReplyToAddresses: [data.email],
       Message: {
         Subject: { Data: `Contact Form: ${data.name}` },
@@ -219,7 +314,7 @@ export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
     // Send confirmation email to visitor
     await ses.send(new SendEmailCommand({
-      Source: FARM_EMAIL,
+      Source: SENDER_EMAIL,
       Destination: { ToAddresses: [data.email] },
       Message: {
         Subject: { Data: 'Thank you for contacting Coatesville Farm' },

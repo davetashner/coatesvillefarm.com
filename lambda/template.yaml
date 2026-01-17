@@ -5,7 +5,7 @@ Description: Coatesville Farm Contact Form API
 Globals:
   Function:
     Timeout: 10
-    Runtime: nodejs20.x
+    Runtime: nodejs24.x
     MemorySize: 128
 
 Resources:

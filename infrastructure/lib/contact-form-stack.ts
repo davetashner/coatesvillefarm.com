@@ -88,8 +88,8 @@ export class ContactFormStack extends cdk.Stack {
       // Unique name for the function in AWS
       functionName: 'coatesville-contact-form',
 
-      // Node.js 20.x is the latest LTS version supported by Lambda
-      runtime: lambda.Runtime.NODEJS_20_X,
+      // Node.js 24.x is the latest version supported by Lambda
+      runtime: lambda.Runtime.NODEJS_24_X,
 
       // The handler is the function that Lambda invokes
       // Format: <filename-without-extension>.<exported-function-name>

@@ -78,7 +78,6 @@ export default function Home() {
             tabIndex={0}
             onClick={isGosling ? handleGoslingClick : handleGooseClick}
             onKeyDown={(e) => handleGooseKeyDown(e, isGosling)}
-            onTouchStart={isGosling ? handleGoslingClick : handleGooseClick}
           />
         ))}
 
@@ -105,17 +104,33 @@ function AnimatedBird({ onClick, chirped }: AnimatedBirdProps) {
   const chirpAudio = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    const flapInterval = setInterval(() => {
-      setFrameIndex((prev) => (prev + 1) % BIRD_FRAMES.length);
-    }, ANIMATION_TIMING.BIRD_FLAP);
+    let rafId: number;
+    let lastFlapTime = 0;
+    let lastFlyTime = 0;
 
-    const flyInterval = setInterval(() => {
-      setPositionX((prev) => (prev < window.innerWidth + 100 ? prev + 2 : -100));
-    }, ANIMATION_TIMING.BIRD_FLY);
+    const animate = (timestamp: number) => {
+      if (!lastFlapTime) {
+        lastFlapTime = timestamp;
+        lastFlyTime = timestamp;
+      }
+
+      if (timestamp - lastFlapTime >= ANIMATION_TIMING.BIRD_FLAP) {
+        setFrameIndex((prev) => (prev + 1) % BIRD_FRAMES.length);
+        lastFlapTime = timestamp;
+      }
+
+      if (timestamp - lastFlyTime >= ANIMATION_TIMING.BIRD_FLY) {
+        setPositionX((prev) => (prev < window.innerWidth + 100 ? prev + 2 : -100));
+        lastFlyTime = timestamp;
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
 
     return () => {
-      clearInterval(flapInterval);
-      clearInterval(flyInterval);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -143,7 +158,6 @@ function AnimatedBird({ onClick, chirped }: AnimatedBirdProps) {
         tabIndex={0}
         onClick={handleInteraction}
         onKeyDown={handleKeyDown}
-        onTouchStart={handleInteraction}
       />
       {chirped && (
         <div

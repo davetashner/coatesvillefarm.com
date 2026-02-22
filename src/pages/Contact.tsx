@@ -1,7 +1,7 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import '../styles/contact.css';
-import { ANIMATION_TIMING, FORM_CONFIG } from '../constants';
+import { FORM_CONFIG } from '../constants';
 import { CONFIG } from '@/config';
 import { useRecaptcha } from '../hooks/useRecaptcha';
 
@@ -21,17 +21,11 @@ type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 const validateEmail = (email: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 function Contact() {
-  const [showButton, setShowButton] = useState(false);
   const [form, setForm] = useState<FormData>({ name: '', email: '', message: '', honey: '' });
   const [errors, setErrors] = useState<FormErrors>({ email: '' });
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
   const { getToken } = useRecaptcha();
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowButton(true), ANIMATION_TIMING.SUBMIT_DELAY);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Auto-hide success/error message after 5 seconds
   useEffect(() => {
@@ -88,7 +82,7 @@ function Contact() {
       }
 
       setSubmitStatus('success');
-      setSubmitMessage('Message sent! We\'ll get back to you soon.');
+      setSubmitMessage(`Message sent! We'll get back to you at ${form.email} soon.`);
       setForm({ name: '', email: '', message: '', honey: '' });
     } catch (error) {
       setSubmitStatus('error');
@@ -197,15 +191,13 @@ function Contact() {
           </div>
         </div>
 
-        {showButton && (
-          <button
-            type="submit"
-            className="submit-button"
-            disabled={submitStatus === 'loading'}
-          >
-            {submitStatus === 'loading' ? 'Sending...' : 'Send Message'}
-          </button>
-        )}
+        <button
+          type="submit"
+          className="submit-button"
+          disabled={submitStatus === 'loading'}
+        >
+          {submitStatus === 'loading' ? 'Sending...' : 'Send Message'}
+        </button>
       </form>
     </div>
   );

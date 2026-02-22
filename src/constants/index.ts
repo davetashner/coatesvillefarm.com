@@ -5,7 +5,6 @@ export const ANIMATION_TIMING = {
   CHIRP_BUBBLE: 1000,
   BIRD_FLAP: 120,
   BIRD_FLY: 16,
-  SUBMIT_DELAY: 1000,
 } as const;
 
 /**

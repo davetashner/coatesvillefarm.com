@@ -52,7 +52,7 @@ describe('Header', () => {
   test('menu toggle opens and closes the mobile menu', () => {
     renderHeader();
 
-    const toggleButton = screen.getByRole('button', { name: /toggle navigation/i });
+    const toggleButton = screen.getByRole('button', { name: /open navigation/i });
     const navMenu = document.getElementById('nav-menu');
 
     // Initially hidden
@@ -73,7 +73,7 @@ describe('Header', () => {
   test('menu closes when a navigation link is clicked', () => {
     renderHeader();
 
-    const toggleButton = screen.getByRole('button', { name: /toggle navigation/i });
+    const toggleButton = screen.getByRole('button', { name: /open navigation/i });
     const navMenu = document.getElementById('nav-menu');
 
     // Open the menu first

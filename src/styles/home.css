@@ -168,8 +168,42 @@
   }
 }
 
+/* ========== Tablet Styles ========== */
+@media (min-width: 768px) {
+  .cloud {
+    width: 240px;
+  }
+
+  .hero-overlay {
+    padding: var(--space-md);
+  }
+
+  .hero-overlay h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* ========== Large Desktop Styles ========== */
+@media (min-width: 1440px) {
+  .hero {
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-overlay {
+    padding: var(--space-lg);
+  }
+
+  .hero-overlay h1 {
+    font-size: 3rem;
+  }
+
+  .cloud {
+    width: 280px;
+  }
+}
+
 /* ========== Mobile Styles ========== */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .cloud {
     animation-duration: 30s;
     width: 100px;

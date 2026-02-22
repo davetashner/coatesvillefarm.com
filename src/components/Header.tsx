@@ -12,15 +12,15 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const location = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 600);
-      if (window.innerWidth > 600) setMenuOpen(false);
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) setMenuOpen(false);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

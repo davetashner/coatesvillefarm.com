@@ -153,7 +153,7 @@
 }
 
 /* Responsive */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .contact-form {
     padding: 1.5rem;
   }

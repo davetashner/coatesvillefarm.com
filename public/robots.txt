@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.coatesvillefarm.com/sitemap.xml
+Sitemap: https://coatesvillefarm.com/sitemap.xml

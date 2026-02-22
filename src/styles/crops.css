@@ -1,0 +1,57 @@
+/* ========== Crops Grid ========== */
+.crops-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: var(--space-md);
+}
+
+/* ========== Crop Card ========== */
+.crop-card {
+  align-items: center;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md) var(--space-sm);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crop-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+/* ========== Card Elements ========== */
+.crop-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.crop-name {
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  margin: 0 0 var(--space-xs);
+}
+
+.crop-season {
+  background-color: var(--color-accent);
+  border-radius: var(--radius-lg);
+  color: var(--color-primary-dark);
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  padding: 0.2rem 0.75rem;
+}
+
+.crop-description {
+  color: var(--color-muted);
+  font-size: var(--font-size-md);
+  line-height: 1.6;
+  margin: 0;
+}

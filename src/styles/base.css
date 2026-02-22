@@ -138,3 +138,14 @@ select:focus-visible {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
 }
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

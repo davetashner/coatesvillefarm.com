@@ -30,7 +30,7 @@
 }
 
 /* Responsive layout tweaks */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .footer {
     padding: 1.5rem var(--space-sm);
   }

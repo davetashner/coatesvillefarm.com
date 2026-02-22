@@ -70,8 +70,21 @@
   font-weight: bold;
 }
 
+/* Tablet and up — increase nav spacing and logo size */
+@media (min-width: 768px) {
+  .navbar-links {
+    gap: 2.5rem;
+  }
+
+  .navbar-logo {
+    height: 56px;
+    max-height: 56px;
+    max-width: 56px;
+  }
+}
+
 /* Mobile Navbar */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .navbar {
     align-items: center;
     flex-direction: row;

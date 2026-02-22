@@ -29,6 +29,12 @@ jobs:
       - name: Run tests
         run: npm test -- --watchAll=false
 
+      - name: Install Lambda dependencies
+        run: cd lambda && npm ci
+
+      - name: Run Lambda tests
+        run: cd lambda && npx jest
+
   deploy:
     name: Deploy to S3
     runs-on: ubuntu-latest

@@ -1,32 +1,23 @@
-import { useState, useEffect, useRef, useCallback, ChangeEvent, FormEvent } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import '../styles/contact.css';
 import { ANIMATION_TIMING, FORM_CONFIG } from '../constants';
 import { CONFIG } from '@/config';
+import { useRecaptcha } from '../hooks/useRecaptcha';
 
-/**
- * Contact form field values.
- */
 interface FormData {
-  /** User's name */
   name: string;
-  /** User's email address */
   email: string;
-  /** Message content */
   message: string;
-  /** Honeypot field for spam prevention (should remain empty) */
   honey: string;
 }
 
-/**
- * Validation error messages for form fields.
- */
 interface FormErrors {
-  /** Email validation error message */
   email: string;
 }
 
-/** Form submission state */
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
+
+const validateEmail = (email: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const Contact = () => {
   const [showButton, setShowButton] = useState(false);
@@ -34,72 +25,11 @@ const Contact = () => {
   const [errors, setErrors] = useState<FormErrors>({ email: '' });
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
-  const recaptchaReady = useRef(false);
+  const { getToken } = useRecaptcha();
 
   useEffect(() => {
     const timer = setTimeout(() => setShowButton(true), ANIMATION_TIMING.SUBMIT_DELAY);
     return () => clearTimeout(timer);
-  }, []);
-
-  // Load reCAPTCHA v3 script if site key is configured
-  useEffect(() => {
-    if (!CONFIG.RECAPTCHA_SITE_KEY) {
-      // No site key configured, reCAPTCHA is optional
-      recaptchaReady.current = true;
-      return;
-    }
-
-    // Check if script is already loaded
-    if (window.grecaptcha) {
-      window.grecaptcha.ready(() => {
-        recaptchaReady.current = true;
-      });
-      return;
-    }
-
-    // Load the reCAPTCHA script
-    const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${CONFIG.RECAPTCHA_SITE_KEY}`;
-    script.async = true;
-    script.defer = true;
-
-    script.onload = () => {
-      window.grecaptcha.ready(() => {
-        recaptchaReady.current = true;
-      });
-    };
-
-    document.head.appendChild(script);
-
-    return () => {
-      // Cleanup: remove script on unmount (optional, prevents duplicate loads)
-      const existingScript = document.querySelector(
-        `script[src^="https://www.google.com/recaptcha/api.js"]`
-      );
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-    };
-  }, []);
-
-  /**
-   * Get reCAPTCHA token for form submission
-   * Returns empty string if reCAPTCHA is not configured or not ready
-   */
-  const getRecaptchaToken = useCallback(async (): Promise<string> => {
-    if (!CONFIG.RECAPTCHA_SITE_KEY || !recaptchaReady.current || !window.grecaptcha) {
-      return '';
-    }
-
-    try {
-      const token = await window.grecaptcha.execute(CONFIG.RECAPTCHA_SITE_KEY, {
-        action: 'submit_contact',
-      });
-      return token;
-    } catch (error) {
-      console.error('Failed to get reCAPTCHA token:', error);
-      return '';
-    }
   }, []);
 
   // Auto-hide success/error message after 5 seconds
@@ -112,10 +42,6 @@ const Contact = () => {
       return () => clearTimeout(timer);
     }
   }, [submitStatus]);
-
-  const validateEmail = (email: string): boolean => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -134,20 +60,17 @@ const Contact = () => {
       return;
     }
 
-    if (form.honey) return; // spam bot detected
+    if (form.honey) return;
 
     setSubmitStatus('loading');
     setSubmitMessage('');
 
     try {
-      // Get reCAPTCHA token (empty string if not configured)
-      const recaptchaToken = await getRecaptchaToken();
+      const recaptchaToken = await getToken();
 
       const response = await fetch(CONFIG.CONTACT_API_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
@@ -180,7 +103,6 @@ const Contact = () => {
     <div className="page">
       <h2 className="page-title">Contact Us</h2>
 
-      {/* Toast notification */}
       {submitStatus !== 'idle' && submitStatus !== 'loading' && (
         <div
           className={`toast toast-${submitStatus}`}
@@ -192,7 +114,6 @@ const Contact = () => {
       )}
 
       <form className="contact-form" onSubmit={handleSubmit}>
-        {/* Honeypot field for spam bots */}
         <div className="visually-hidden">
           <label htmlFor="honey">Leave this field empty</label>
           <input

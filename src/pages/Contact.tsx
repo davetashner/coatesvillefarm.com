@@ -106,6 +106,14 @@ function Contact() {
       </Helmet>
       <h2 className="page-title">Contact Us</h2>
 
+      <div className="contact-info-bar">
+        <p>
+          Prefer to call? Reach us at{' '}
+          <a href="tel:8044496016" className="contact-phone-link">(804) 449-6016</a>
+        </p>
+        <p className="contact-response-time">We typically reply within 1&ndash;2 business days.</p>
+      </div>
+
       {submitStatus !== 'idle' && submitStatus !== 'loading' && (
         <div
           className={`toast toast-${submitStatus}`}
@@ -200,6 +208,25 @@ function Contact() {
           {submitStatus === 'loading' ? 'Sending...' : 'Send Message'}
         </button>
       </form>
+
+      <section className="contact-map-section">
+        <h3 className="contact-map-heading">Find Us</h3>
+        <div className="contact-map-container">
+          <iframe
+            title="Coatesville Farm location on Google Maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6342.7!2d-77.6523!3d37.8477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b116a5c43b6c6f%3A0x0!2zMTQwNzIgT2xkIFJpZGdlIFJkLCBCZWF2ZXJkYW0sIFZBIDIzMDE1!5e0!3m2!1sen!2sus!4v1"
+            width="100%"
+            height="350"
+            style={{ border: 0, borderRadius: 'var(--radius-md)' }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+        <p className="contact-map-address">
+          14072 Old Ridge Road, Beaverdam, VA
+        </p>
+      </section>
     </div>
   );
 }

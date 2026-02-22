@@ -152,6 +152,63 @@
   }
 }
 
+/* Contact Info Bar */
+.contact-info-bar {
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.contact-info-bar p {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.contact-phone-link {
+  color: var(--color-primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.contact-phone-link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.contact-response-time {
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-xs) !important;
+}
+
+/* Map Section */
+.contact-map-section {
+  margin-top: var(--space-lg);
+}
+
+.contact-map-heading {
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.contact-map-container {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.contact-map-container iframe {
+  display: block;
+}
+
+.contact-map-address {
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-xs);
+  text-align: center;
+}
+
 /* Responsive */
 @media (max-width: 767px) {
   .contact-form {

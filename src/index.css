@@ -6,6 +6,7 @@
 @import './styles/home.css';
 @import './styles/contact.css';
 @import './styles/crops.css';
+@import './styles/transitions.css';
 
 .about-image {
   border-radius: 12px;

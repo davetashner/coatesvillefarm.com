@@ -52,6 +52,7 @@ export default function Home() {
           name="description"
           content="Coatesville Farm is a family-run farm in Beaverdam, Virginia growing fresh produce with sustainable practices across generations."
         />
+        <link rel="canonical" href="https://coatesvillefarm.com/" />
       </Helmet>
       <section className="hero">
         <Picture

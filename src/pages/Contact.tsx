@@ -102,6 +102,7 @@ function Contact() {
           name="description"
           content="Get in touch with Coatesville Farm in Beaverdam, Virginia. Send us a message or find our location and contact details."
         />
+        <link rel="canonical" href="https://coatesvillefarm.com/contact" />
       </Helmet>
       <h2 className="page-title">Contact Us</h2>
 

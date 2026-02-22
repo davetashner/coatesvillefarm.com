@@ -33,7 +33,6 @@
   box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
-  font-family: var(--font-body);
   gap: 1.5rem;
   padding: var(--space-md);
 }
@@ -53,7 +52,6 @@
   background-color: var(--color-input-bg);
   border: 1px solid var(--color-accent);
   border-radius: var(--radius-sm);
-  font-family: var(--font-body);
   font-size: 1rem;
   margin-top: var(--space-xs);
   padding: 0.75rem 1rem;
@@ -90,7 +88,6 @@
 .helper-text {
   color: var(--color-muted);
   font-size: var(--font-size-sm);
-  font-family: var(--font-body);
   font-weight: normal;
 }
 
@@ -107,7 +104,6 @@
   border-radius: 2rem;
   color: var(--color-surface);
   cursor: pointer;
-  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: bold;
   padding: 0.75rem 1.5rem;
@@ -136,7 +132,6 @@
   padding: 1rem 1.5rem;
   border-radius: var(--radius-sm);
   margin-bottom: var(--space-md);
-  font-family: var(--font-body);
   font-size: var(--font-size-md);
   text-align: center;
   animation: slideIn 0.3s ease-out;

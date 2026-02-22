@@ -15,6 +15,7 @@ export default function About() {
         src="/assets/img/silo-rainbow.png"
         alt="Coatesville Farm barn with rainbow"
         className="about-image"
+        loading="lazy"
       />
       <p>
         Coatesville Farm is a family-run farm located in the heart of Beaverdam, Virginia.

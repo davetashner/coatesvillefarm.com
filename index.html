@@ -21,13 +21,48 @@
   <meta http-equiv="X-Frame-Options" content="DENY" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+  <!-- Preconnect to font origins for faster loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lora&display=swap" rel="stylesheet" />
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="/assets/img/hero.png" />
+
+  <!-- OpenGraph meta tags -->
+  <meta property="og:title" content="Coatesville Farm | Fresh Produce in Beaverdam, VA" />
+  <meta property="og:description" content="Coatesville Farm is a family-run farm in Beaverdam, Virginia growing fresh produce with sustainable practices across generations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://coatesvillefarm.com" />
+  <meta property="og:image" content="https://coatesvillefarm.com/assets/img/hero.png" />
+  <meta property="og:site_name" content="Coatesville Farm" />
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/logo.png" />
+
+  <!-- Structured data: LocalBusiness (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Farm",
+    "name": "Coatesville Farm",
+    "description": "Coatesville Farm is a family-run farm in Beaverdam, Virginia growing fresh produce with sustainable practices across generations.",
+    "url": "https://coatesvillefarm.com",
+    "telephone": "(804) 449-6016",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "14072 Old Ridge Road",
+      "addressLocality": "Beaverdam",
+      "addressRegion": "VA",
+      "addressCountry": "US"
+    },
+    "image": "https://coatesvillefarm.com/assets/img/hero.png"
+  }
+  </script>
 </head>
   <body>
     <div id="root"></div>

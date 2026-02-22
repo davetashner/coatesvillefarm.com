@@ -1,10 +1,35 @@
-import { useState, useEffect, useRef, KeyboardEvent } from 'react';
+import { useState, useEffect, useRef, useMemo, KeyboardEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import '../styles/home.css';
 import SeasonalLogo from '../components/SeasonalLogo';
+import Picture from '../components/Picture';
 import { playAudio } from '../utils/audioUtils';
 import { ANIMATION_TIMING, BIRD_FRAMES } from '../constants';
-import Picture from '../components/Picture';
+
+interface CropInfo {
+  name: string;
+  icon: string;
+  startMonth: number;
+  endMonth: number;
+}
+
+const CROP_SEASONS: CropInfo[] = [
+  { name: 'Soybeans', icon: '🌱', startMonth: 4, endMonth: 9 },
+  { name: 'Corn', icon: '🌽', startMonth: 3, endMonth: 8 },
+  { name: 'Wheat', icon: '🌾', startMonth: 9, endMonth: 6 },
+  { name: 'Hay', icon: '🌿', startMonth: 3, endMonth: 9 },
+  { name: 'Barley', icon: '🫘', startMonth: 8, endMonth: 5 },
+];
+
+function getInSeasonCrops(date: Date = new Date()): CropInfo[] {
+  const month = date.getMonth(); // 0-indexed
+  return CROP_SEASONS.filter(({ startMonth, endMonth }) =>
+    startMonth <= endMonth
+      ? month >= startMonth && month <= endMonth
+      : month >= startMonth || month <= endMonth
+  );
+}
 
 interface GooseItem {
   src: string;
@@ -84,6 +109,57 @@ export default function Home() {
 
         <audio ref={gooseAudioRef} src="/assets/audio/canada-goose-1.m4a" preload="none" />
         <audio ref={goslingAudioRef} src="/assets/audio/canada-gosling-1.m4a" preload="none" />
+      </section>
+
+      <HomeContent />
+    </div>
+  );
+}
+
+function HomeContent() {
+  const inSeason = useMemo(() => getInSeasonCrops(), []);
+
+  return (
+    <div className="home-content">
+      {inSeason.length > 0 && (
+        <section className="home-section">
+          <h2 className="home-section-title">What&rsquo;s Growing Now</h2>
+          <div className="season-chips">
+            {inSeason.map((crop) => (
+              <span key={crop.name} className="season-chip">
+                <span aria-hidden="true">{crop.icon}</span> {crop.name}
+              </span>
+            ))}
+          </div>
+          <Link to="/crops" className="home-link">See all our crops &rarr;</Link>
+        </section>
+      )}
+
+      <section className="home-section home-about-preview">
+        <div className="home-about-content">
+          <div className="home-about-text">
+            <h2 className="home-section-title">Our Farm</h2>
+            <p>
+              Coatesville Farm is a family-run farm in the heart of Beaverdam, Virginia.
+              With a passion for sustainable agriculture and a commitment to community
+              values, we grow crops with care and purpose across generations.
+            </p>
+            <Link to="/about" className="home-link">Learn more about us &rarr;</Link>
+          </div>
+          <div className="home-about-image">
+            <Picture
+              src="/assets/img/silo-rainbow.png"
+              alt="Coatesville Farm silo with rainbow"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="home-section home-cta">
+        <h2 className="home-section-title">Get in Touch</h2>
+        <p>Have questions about our crops or want to learn more? We&rsquo;d love to hear from you.</p>
+        <Link to="/contact" className="cta-button">Contact Us</Link>
       </section>
     </div>
   );

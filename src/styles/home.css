@@ -10,8 +10,6 @@
   border: none;
   border-radius: 0;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  flex: 1;
-  flex-grow: 1;
   margin: 0;
   overflow: hidden;
   padding: 0;
@@ -168,6 +166,107 @@
   }
 }
 
+/* ========== Home Content Sections ========== */
+.home-content {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: var(--space-md) var(--space-sm);
+}
+
+.home-section {
+  margin-bottom: var(--space-lg);
+}
+
+.home-section-title {
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xxl);
+  margin-bottom: var(--space-sm);
+}
+
+.season-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+}
+
+.season-chip {
+  background-color: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-primary-dark);
+  font-size: var(--font-size-md);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.home-link {
+  color: var(--color-link);
+  font-size: var(--font-size-lg);
+  text-decoration: none;
+}
+
+.home-link:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+.home-about-content {
+  align-items: center;
+  display: flex;
+  gap: var(--space-md);
+}
+
+.home-about-text {
+  flex: 1;
+  text-align: left;
+}
+
+.home-about-text p {
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin-bottom: var(--space-sm);
+}
+
+.home-about-image {
+  flex: 1;
+}
+
+.home-about-image img {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  max-width: 100%;
+}
+
+.home-cta {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+}
+
+.home-cta p {
+  color: var(--color-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.cta-button {
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  color: var(--color-surface);
+  display: inline-block;
+  font-size: var(--font-size-lg);
+  padding: var(--space-xs) var(--space-md);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
 /* ========== Tablet Styles ========== */
 @media (min-width: 768px) {
   .cloud {
@@ -242,5 +341,17 @@
     animation-delay: 22s;
     bottom: 20%;
     left: 8%;
+  }
+
+  .home-about-content {
+    flex-direction: column;
+  }
+
+  .home-about-text {
+    text-align: center;
+  }
+
+  .home-section-title {
+    font-size: var(--font-size-xl);
   }
 }

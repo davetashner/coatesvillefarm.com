@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coatesville Farm</title>
 
+  <!-- Security headers (meta tag fallback; prefer CloudFront response headers policy) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src 'self' https://www.google.com https://www.gstatic.com;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                 font-src 'self' https://fonts.gstatic.com;
+                 img-src 'self' data:;
+                 connect-src 'self' https://www.google.com https://*.execute-api.us-east-1.amazonaws.com;
+                 frame-src https://www.google.com;
+                 object-src 'none';
+                 base-uri 'self';
+                 form-action 'self'" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lora&display=swap" rel="stylesheet" />
 

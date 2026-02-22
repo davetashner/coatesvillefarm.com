@@ -7,7 +7,8 @@ function Footer() {
     <footer className="footer">
       <div className="footer-contact">
         <p>
-          <span aria-hidden="true">📍</span>{' '}
+          <span aria-hidden="true">📍</span>
+          <span className="sr-only">Location:</span>{' '}
           <a
             href="https://maps.app.goo.gl/7daPheXtBUPiJES87"
             target="_blank"
@@ -18,13 +19,15 @@ function Footer() {
           </a>
         </p>
         <p>
-          <span aria-hidden="true">📞</span>{' '}
+          <span aria-hidden="true">📞</span>
+          <span className="sr-only">Phone:</span>{' '}
           <a href="tel:+18044496016" className="footer-link">
             (804) 449-6016
           </a>
         </p>
         <p>
-          <span aria-hidden="true">✉️</span>{' '}
+          <span aria-hidden="true">✉️</span>
+          <span className="sr-only">Email:</span>{' '}
           <a href="mailto:coatesvillefarm@gmail.com" className="footer-link">
             coatesvillefarm@gmail.com
           </a>

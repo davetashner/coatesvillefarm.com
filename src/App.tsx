@@ -14,8 +14,11 @@ function App() {
     <HelmetProvider>
       <Router>
         <div className="app-container">
+          <a href="#main-content" className="skip-to-content">
+            Skip to main content
+          </a>
           <Header />
-          <main className="main-content">
+          <main id="main-content" className="main-content">
             <ErrorBoundary>
               <Routes>
                 <Route path="/" element={<Home />} />

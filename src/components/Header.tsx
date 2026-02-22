@@ -74,7 +74,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="navbar">
+      <nav className="navbar" aria-label="Main navigation">
         <Link to="/" className="navbar-logo-link" onClick={() => setMenuOpen(false)}>
           <SeasonalLogo className="navbar-logo" />
         </Link>
@@ -86,12 +86,13 @@ export default function Header() {
             onClick={toggleMenu}
             aria-label="Toggle navigation"
             aria-expanded={menuOpen}
+            aria-controls="nav-menu"
           >
             ☰
           </button>
         )}
 
-        <div ref={navRef} className={navLinksClass}>
+        <div ref={navRef} id="nav-menu" className={navLinksClass}>
           {NAV_ITEMS.map(({ path, label }) => (
             <Link
               key={path}

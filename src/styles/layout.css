@@ -42,6 +42,39 @@ body,
   margin-bottom: var(--space-sm);
 }
 
+/* Skip to content link — visually hidden, visible on focus */
+.skip-to-content {
+  background: var(--color-primary-dark, #2e7d32);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  left: 50%;
+  padding: 0.75rem 1.5rem;
+  position: absolute;
+  text-decoration: none;
+  top: -100%;
+  transform: translateX(-50%);
+  z-index: 10000;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Screen-reader-only text (visually hidden but accessible) */
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+
 /* Prevent extra spacing under images */
 img {
   display: block;

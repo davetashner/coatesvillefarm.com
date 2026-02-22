@@ -5,6 +5,7 @@
 @import './styles/layout.css';
 @import './styles/home.css';
 @import './styles/contact.css';
+@import './styles/crops.css';
 
 .about-image {
   border-radius: 12px;
@@ -33,11 +34,6 @@
   max-width: 300px;
   object-fit: cover;
   width: 100%;
-}
-
-.crop-list {
-  list-style-type: disc;
-  padding-left: 1.25rem;
 }
 
 .email-link {

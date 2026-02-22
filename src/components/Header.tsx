@@ -3,6 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import SeasonalLogo from './SeasonalLogo';
 import '../styles/layout.css';
 
+const NAV_ITEMS = [
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/crops', label: 'Crops' },
+  { path: '/contact', label: 'Contact' },
+];
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
@@ -85,38 +92,17 @@ export default function Header() {
         )}
 
         <div ref={navRef} className={navLinksClass}>
-          <Link
-            to="/"
-            className={`nav-link ${isActive('/') ? 'active' : ''}`}
-            aria-current={isActive('/') ? 'page' : undefined}
-            onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
-            to="/about"
-            className={`nav-link ${isActive('/about') ? 'active' : ''}`}
-            aria-current={isActive('/about') ? 'page' : undefined}
-            onClick={() => setMenuOpen(false)}
-          >
-            About
-          </Link>
-          <Link
-            to="/crops"
-            className={`nav-link ${isActive('/crops') ? 'active' : ''}`}
-            aria-current={isActive('/crops') ? 'page' : undefined}
-            onClick={() => setMenuOpen(false)}
-          >
-            Crops
-          </Link>
-          <Link
-            to="/contact"
-            className={`nav-link ${isActive('/contact') ? 'active' : ''}`}
-            aria-current={isActive('/contact') ? 'page' : undefined}
-            onClick={() => setMenuOpen(false)}
-          >
-            Contact
-          </Link>
+          {NAV_ITEMS.map(({ path, label }) => (
+            <Link
+              key={path}
+              to={path}
+              className={`nav-link ${isActive(path) ? 'active' : ''}`}
+              aria-current={isActive(path) ? 'page' : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
         </div>
       </nav>
     </header>

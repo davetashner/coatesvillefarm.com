@@ -1,4 +1,5 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { Helmet } from 'react-helmet-async';
 import '../styles/contact.css';
 import { ANIMATION_TIMING, FORM_CONFIG } from '../constants';
 import { CONFIG } from '@/config';
@@ -19,7 +20,7 @@ type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 
 const validateEmail = (email: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-const Contact = () => {
+function Contact() {
   const [showButton, setShowButton] = useState(false);
   const [form, setForm] = useState<FormData>({ name: '', email: '', message: '', honey: '' });
   const [errors, setErrors] = useState<FormErrors>({ email: '' });
@@ -101,6 +102,13 @@ const Contact = () => {
 
   return (
     <div className="page">
+      <Helmet>
+        <title>Contact Us | Coatesville Farm</title>
+        <meta
+          name="description"
+          content="Get in touch with Coatesville Farm in Beaverdam, Virginia. Send us a message or find our location and contact details."
+        />
+      </Helmet>
       <h2 className="page-title">Contact Us</h2>
 
       {submitStatus !== 'idle' && submitStatus !== 'loading' && (
@@ -201,6 +209,6 @@ const Contact = () => {
       </form>
     </div>
   );
-};
+}
 
 export default Contact;

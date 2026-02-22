@@ -1,12 +1,15 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Contact from '../pages/Contact';
 
 test('renders Contact page content', () => {
   render(
-    <MemoryRouter>
-      <Contact />
-    </MemoryRouter>
+    <HelmetProvider>
+      <MemoryRouter>
+        <Contact />
+      </MemoryRouter>
+    </HelmetProvider>
   );
 
   expect(screen.getByRole('heading', { name: /contact us/i })).toBeInTheDocument();
@@ -19,9 +22,11 @@ test('shows validation error for invalid email', async () => {
   jest.useFakeTimers();
 
   render(
-    <MemoryRouter>
-      <Contact />
-    </MemoryRouter>
+    <HelmetProvider>
+      <MemoryRouter>
+        <Contact />
+      </MemoryRouter>
+    </HelmetProvider>
   );
 
   act(() => {

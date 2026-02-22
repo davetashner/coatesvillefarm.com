@@ -12,7 +12,7 @@ interface SeasonalLogoProps {
   night?: boolean;
 }
 
-const SeasonalLogo = ({ className = '', season, night }: SeasonalLogoProps) => {
+function SeasonalLogo({ className = '', season, night }: SeasonalLogoProps) {
   const currentSeason = season || getSeason();
   const isNight = night !== undefined ? night : isNightTime();
   const imageName = `logo-${currentSeason}${isNight ? '-night' : ''}.png`;
@@ -25,6 +25,6 @@ const SeasonalLogo = ({ className = '', season, night }: SeasonalLogoProps) => {
       className={`logo ${className}`}
     />
   );
-};
+}
 
 export default SeasonalLogo;

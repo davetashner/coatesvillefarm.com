@@ -1,8 +1,22 @@
 import { useState, useEffect, useRef, KeyboardEvent } from 'react';
+import { Helmet } from 'react-helmet-async';
 import '../styles/home.css';
 import SeasonalLogo from '../components/SeasonalLogo';
 import { playAudio } from '../utils/audioUtils';
 import { ANIMATION_TIMING, BIRD_FRAMES } from '../constants';
+
+interface GooseItem {
+  src: string;
+  className: string;
+  alt: string;
+  isGosling: boolean;
+}
+
+const GOOSE_ITEMS: GooseItem[] = [
+  { src: '/assets/img/canada-goose-1.png', className: 'goose', alt: 'Goose - click to hear honk', isGosling: false },
+  { src: '/assets/img/canada-goose-2.png', className: 'goose goose-2', alt: 'Goose - click to hear honk', isGosling: false },
+  { src: '/assets/img/canada-goose-3.png', className: 'goose goose-3', alt: 'Gosling - click to hear chirp', isGosling: true },
+];
 
 export default function Home() {
   const [chirped, setChirped] = useState(false);
@@ -31,6 +45,13 @@ export default function Home() {
 
   return (
     <div className="home">
+      <Helmet>
+        <title>Coatesville Farm | Fresh Produce in Beaverdam, VA</title>
+        <meta
+          name="description"
+          content="Coatesville Farm is a family-run farm in Beaverdam, Virginia growing fresh produce with sustainable practices across generations."
+        />
+      </Helmet>
       <section className="hero">
         <img
           src="/assets/img/hero.png"
@@ -47,36 +68,19 @@ export default function Home() {
         <img src="/assets/img/cloud-2.png" alt="" className="cloud cloud-2" aria-hidden="true" />
         <img src="/assets/img/cloud-3.png" alt="" className="cloud cloud-3" aria-hidden="true" />
 
-        <img
-          src="/assets/img/canada-goose-1.png"
-          alt="Goose - click to hear honk"
-          className="goose"
-          role="button"
-          tabIndex={0}
-          onClick={handleGooseClick}
-          onKeyDown={(e) => handleGooseKeyDown(e)}
-          onTouchStart={handleGooseClick}
-        />
-        <img
-          src="/assets/img/canada-goose-2.png"
-          alt="Goose - click to hear honk"
-          className="goose goose-2"
-          role="button"
-          tabIndex={0}
-          onClick={handleGooseClick}
-          onKeyDown={(e) => handleGooseKeyDown(e)}
-          onTouchStart={handleGooseClick}
-        />
-        <img
-          src="/assets/img/canada-goose-3.png"
-          alt="Gosling - click to hear chirp"
-          className="goose goose-3"
-          role="button"
-          tabIndex={0}
-          onClick={handleGoslingClick}
-          onKeyDown={(e) => handleGooseKeyDown(e, true)}
-          onTouchStart={handleGoslingClick}
-        />
+        {GOOSE_ITEMS.map(({ src, className, alt, isGosling }) => (
+          <img
+            key={src}
+            src={src}
+            alt={alt}
+            className={className}
+            role="button"
+            tabIndex={0}
+            onClick={isGosling ? handleGoslingClick : handleGooseClick}
+            onKeyDown={(e) => handleGooseKeyDown(e, isGosling)}
+            onTouchStart={isGosling ? handleGoslingClick : handleGooseClick}
+          />
+        ))}
 
         <audio ref={gooseAudioRef} src="/assets/audio/canada-goose-1.m4a" preload="auto" />
         <audio ref={goslingAudioRef} src="/assets/audio/canada-gosling-1.m4a" preload="auto" />

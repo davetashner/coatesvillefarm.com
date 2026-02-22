@@ -37,8 +37,9 @@ body,
 
 .page-title {
   color: var(--color-primary-dark);
-  font-family: var(--font-heading);
+  font-family: 'Lora', serif;
   font-size: var(--font-size-xl);
+  font-weight: 700;
   margin-bottom: var(--space-sm);
 }
 

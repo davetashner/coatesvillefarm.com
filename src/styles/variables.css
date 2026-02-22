@@ -7,8 +7,8 @@
   --color-surface: #ffffff;       /* White surfaces */
   --color-text: #1b3c1b;          /* Deep green text */
   --color-muted: #4e6b4e;         /* Muted/secondary text */
-  --color-link: #1565c0;          /* Link blue */
-  --color-link-hover: #0d47a1;
+  --color-link: #b8860b;          /* Dark goldenrod — earthy accent */
+  --color-link-hover: #8b6508;    /* Darker goldenrod for hover */
   --color-error: #d32f2f;         /* Error red */
   --color-error-dark: #c62828;    /* Error text */
   --color-error-bg: #ffebee;      /* Error background */

@@ -29,8 +29,8 @@ body {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-primary-dark);
-  font-family: var(--font-heading);
-  font-weight: bold;
+  font-family: 'Lora', serif;
+  font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
 }

@@ -16,7 +16,7 @@
   overflow: hidden;
   padding: 0;
   position: relative;
-  width: 100vw;
+  width: 100%;
 }
 
 .hero-image {
@@ -31,6 +31,7 @@
 
 .hero-overlay {
   color: var(--color-surface);
+  font-family: var(--font-heading);
   left: 50%;
   padding: var(--space-sm);
   position: absolute;

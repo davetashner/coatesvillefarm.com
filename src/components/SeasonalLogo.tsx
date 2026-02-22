@@ -1,4 +1,5 @@
 import { getSeason, isNightTime, type Season } from '../utils/logoUtils';
+import Picture from './Picture';
 
 /**
  * Props for the SeasonalLogo component.
@@ -19,7 +20,7 @@ function SeasonalLogo({ className = '', season, night }: SeasonalLogoProps) {
   const imagePath = `/assets/img/${imageName}`;
 
   return (
-    <img
+    <Picture
       src={imagePath}
       alt={`Coatesville Farm logo for ${currentSeason}${isNight ? ' night' : ''}`}
       className={`logo ${className}`}

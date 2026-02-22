@@ -4,6 +4,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Crops from './pages/Crops';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/crops" element={<Crops />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </ErrorBoundary>
           </main>

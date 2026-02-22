@@ -18,6 +18,7 @@ export default function Crops() {
           name="description"
           content="Explore the diverse crops grown at Coatesville Farm in Virginia, including soybeans, wheat, corn, hay, and barley."
         />
+        <link rel="canonical" href="https://coatesvillefarm.com/crops" />
       </Helmet>
       <h2 className="page-title">Our Crops</h2>
       <div className="crops-grid">

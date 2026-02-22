@@ -10,6 +10,7 @@ export default function About() {
           name="description"
           content="Learn more about Coatesville Farm, a multigenerational family-run farm in Beaverdam, Virginia focused on sustainability and community values."
         />
+        <link rel="canonical" href="https://coatesvillefarm.com/about" />
       </Helmet>
       <h2 className="page-title">About Us</h2>
       <Picture

@@ -4,6 +4,7 @@ import '../styles/home.css';
 import SeasonalLogo from '../components/SeasonalLogo';
 import { playAudio } from '../utils/audioUtils';
 import { ANIMATION_TIMING, BIRD_FRAMES } from '../constants';
+import Picture from '../components/Picture';
 
 interface GooseItem {
   src: string;
@@ -53,7 +54,7 @@ export default function Home() {
         />
       </Helmet>
       <section className="hero">
-        <img
+        <Picture
           src="/assets/img/hero.png"
           alt="Coatesville Farm landscape"
           className="hero-image"
@@ -64,12 +65,12 @@ export default function Home() {
         </div>
 
         <AnimatedBird onClick={handleBirdClick} chirped={chirped} />
-        <img src="/assets/img/cloud-1.png" alt="" className="cloud cloud-1" aria-hidden="true" />
-        <img src="/assets/img/cloud-2.png" alt="" className="cloud cloud-2" aria-hidden="true" />
-        <img src="/assets/img/cloud-3.png" alt="" className="cloud cloud-3" aria-hidden="true" />
+        <Picture src="/assets/img/cloud-1.png" alt="" className="cloud cloud-1" aria-hidden="true" />
+        <Picture src="/assets/img/cloud-2.png" alt="" className="cloud cloud-2" aria-hidden="true" />
+        <Picture src="/assets/img/cloud-3.png" alt="" className="cloud cloud-3" aria-hidden="true" />
 
         {GOOSE_ITEMS.map(({ src, className, alt, isGosling }) => (
-          <img
+          <Picture
             key={src}
             src={src}
             alt={alt}
@@ -149,7 +150,7 @@ function AnimatedBird({ onClick, chirped }: AnimatedBirdProps) {
   return (
     <>
       <audio ref={chirpAudio} src="/assets/audio/northern-cardinal-chirp.m4a" preload="none" />
-      <img
+      <Picture
         src={BIRD_FRAMES[frameIndex]}
         alt="Flying cardinal - click to hear chirp"
         className="animated-bird"

@@ -25,4 +25,11 @@ describe('SeasonalLogo component', () => {
     const img = screen.getByRole('img', { name: /coatesville farm logo/i });
     expect(img).toHaveAttribute('src', '/assets/img/logo-spring-night.png');
   });
+
+  test('includes webp source for modern browsers', () => {
+    const { container } = render(<SeasonalLogo season="autumn" night={false} />);
+    const source = container.querySelector('source[type="image/webp"]');
+    expect(source).not.toBeNull();
+    expect(source?.getAttribute('srcSet')).toBe('/assets/img/logo-autumn.webp');
+  });
 });

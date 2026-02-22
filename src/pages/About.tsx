@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import Picture from '../components/Picture';
 
 export default function About() {
   return (
@@ -11,7 +12,7 @@ export default function About() {
         />
       </Helmet>
       <h2 className="page-title">About Us</h2>
-      <img
+      <Picture
         src="/assets/img/silo-rainbow.png"
         alt="Coatesville Farm barn with rainbow"
         className="about-image"

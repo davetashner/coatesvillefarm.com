@@ -48,6 +48,11 @@ FUNC_CODE='function handler(event) {
   return request;
 }'
 
+# Write function code to a temp file (AWS CLI expects fileb:// for --function-code)
+FUNC_FILE=$(mktemp)
+trap 'rm -f "$FUNC_FILE"' EXIT
+printf '%s' "$FUNC_CODE" > "$FUNC_FILE"
+
 # Step 1: Create or update the CloudFront Function
 echo "Creating/updating CloudFront Function: $FUNC_NAME..."
 
@@ -58,14 +63,14 @@ if [ -n "$EXISTING_ETAG" ] && [ "$EXISTING_ETAG" != "None" ]; then
   FUNC_RESULT=$(aws cloudfront update-function \
     --name "$FUNC_NAME" \
     --function-config '{"Comment":"Redirect www.coatesvillefarm.com to coatesvillefarm.com","Runtime":"cloudfront-js-2.0"}' \
-    --function-code "$FUNC_CODE" \
+    --function-code "fileb://$FUNC_FILE" \
     --if-match "$EXISTING_ETAG")
 else
   echo "Creating new function..."
   FUNC_RESULT=$(aws cloudfront create-function \
     --name "$FUNC_NAME" \
     --function-config '{"Comment":"Redirect www.coatesvillefarm.com to coatesvillefarm.com","Runtime":"cloudfront-js-2.0"}' \
-    --function-code "$FUNC_CODE")
+    --function-code "fileb://$FUNC_FILE")
 fi
 
 FUNC_ARN=$(echo "$FUNC_RESULT" | jq -r '.FunctionSummary.FunctionMetadata.FunctionARN')

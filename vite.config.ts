@@ -9,11 +9,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  css: {
-    preprocessorOptions: {
-      css: {
-        additionalData: `@import './src/index.css';`,
-      },
-    },
-  },
 });

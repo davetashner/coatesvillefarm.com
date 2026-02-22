@@ -81,8 +81,8 @@ export default function Home() {
           />
         ))}
 
-        <audio ref={gooseAudioRef} src="/assets/audio/canada-goose-1.m4a" preload="auto" />
-        <audio ref={goslingAudioRef} src="/assets/audio/canada-gosling-1.m4a" preload="auto" />
+        <audio ref={gooseAudioRef} src="/assets/audio/canada-goose-1.m4a" preload="none" />
+        <audio ref={goslingAudioRef} src="/assets/audio/canada-gosling-1.m4a" preload="none" />
       </section>
     </div>
   );
@@ -148,7 +148,7 @@ function AnimatedBird({ onClick, chirped }: AnimatedBirdProps) {
 
   return (
     <>
-      <audio ref={chirpAudio} src="/assets/audio/northern-cardinal-chirp.m4a" preload="auto" />
+      <audio ref={chirpAudio} src="/assets/audio/northern-cardinal-chirp.m4a" preload="none" />
       <img
         src={BIRD_FRAMES[frameIndex]}
         alt="Flying cardinal - click to hear chirp"

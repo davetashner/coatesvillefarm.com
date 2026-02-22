@@ -42,19 +42,6 @@ body,
   margin-bottom: var(--space-sm);
 }
 
-/* Utility spacing classes */
-.text-center {
-  text-align: center;
-}
-
-.mt-2 {
-  margin-top: var(--space-xs);
-}
-
-.mt-4 {
-  margin-top: var(--space-sm);
-}
-
 /* Prevent extra spacing under images */
 img {
   display: block;

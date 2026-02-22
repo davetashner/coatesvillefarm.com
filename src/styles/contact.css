@@ -17,14 +17,6 @@
   flex-direction: column;
 }
 
-/* Contact Page Container */
-.page.contact-page {
-  padding: var(--space-md) var(--space-sm);
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
 /* Contact Form */
 .contact-form {
   background-color: var(--color-surface);
